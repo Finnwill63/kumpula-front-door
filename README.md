@@ -7,6 +7,7 @@ Prototype of kumpula.science (see the strategy: "The Kumpula Front Door").
 - `group.html` — sample group page (Atmospheric Aerosols Research Group, INAR)
 - `partner.html` — partner journey with the two-working-day promise
 - `city-blend.html` — front page variant blended toward hel.fi / Helsinki Design System conventions
+- `traditional.html` — alternative B: fully traditional institutional layout (light, accordion themes, tiered company sections) with the same data and working search
 
 ## Publish
 1. Create a repo (e.g. `kumpula-front-door`), push these files.
