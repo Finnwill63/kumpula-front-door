@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Work with Kumpula — routes for corporations, scale-ups and startups. Prototype.">
+</head>
+<body style="margin:0">
+<title>Kumpula Partner Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F5F8FA; --surface:#FFFFFF; --ink:#101C27; --ink-soft:#3D4E5C; --ink-faint:#6B7C8B;
+  --line:#D7E0E7; --line-soft:#E6EDF2;
+  --accent:#155FA0; --accent-ink:#0F477A; --accent-wash:#E9F1F8;
+  --amber:#B3661C; --amber-wash:#F9F1E5;
+  --hero:#0C1B2A; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+    --line:#2A3844; --line-soft:#202C36;
+    --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+    --amber:#D9924B; --amber-wash:#292015;
+    --hero:#0A1723; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+  --line:#2A3844; --line-soft:#202C36;
+  --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+  --amber:#D9924B; --amber-wash:#292015;
+  --hero:#0A1723; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased}
+.shell{max-width:1080px; margin:0 auto; padding:0 28px}
+a{color:inherit; text-decoration:none}
+.ribbon{background:var(--amber-wash); color:var(--amber); font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:8px 12px}
+.top{border-bottom:1px solid var(--line); background:var(--surface)}
+.topin{display:flex; align-items:center; gap:28px; height:64px}
+.mark{display:flex; flex-direction:column; line-height:1.1}
+.mark .m1{font:600 19px "IBM Plex Serif",Georgia,serif}
+.mark .m2{font:400 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-top:3px}
+nav.faces{display:flex; gap:22px; margin-left:12px}
+nav.faces a{font:500 14px "IBM Plex Sans"; color:var(--ink-soft); padding:6px 2px; border-bottom:2px solid transparent}
+nav.faces a:hover{color:var(--accent); border-color:var(--accent)}
+nav.faces a.on{color:var(--ink); border-color:var(--accent)}
+.top-right{margin-left:auto; display:flex; align-items:center; gap:16px}
+.lang{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.lang b{color:var(--ink); font-weight:500}
+.ask-btn{background:var(--accent); color:#fff; font:500 13px "IBM Plex Sans"; padding:9px 16px; border-radius:6px; border:none; cursor:pointer}
+.ask-btn:hover{background:var(--accent-ink)}
+
+/* header */
+.phead{padding:56px 0 44px; border-bottom:1px solid var(--line)}
+.phead .kicker{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin:0 0 16px}
+.phead h1{font:600 42px/1.12 "IBM Plex Serif",Georgia,serif; margin:0 0 14px; letter-spacing:-.01em; max-width:16em; text-wrap:balance}
+.phead p.sub{font:400 17px/1.65 "IBM Plex Sans"; color:var(--ink-soft); margin:0; max-width:42em}
+
+/* audience routes */
+section.blk{padding:56px 0 8px}
+.blk h2{font:600 25px/1.2 "IBM Plex Serif",Georgia,serif; margin:0 0 6px}
+.blk p.intro{color:var(--ink-soft); margin:4px 0 0; max-width:46em}
+.aud{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:14px; margin-top:26px}
+.audcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:24px 22px 20px; display:flex; flex-direction:column; transition:border-color .15s}
+.audcard:hover{border-color:var(--accent)}
+.audcard .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+.audcard h3{font:600 19px "IBM Plex Serif",Georgia,serif; margin:12px 0 8px}
+.audcard p{font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; line-height:1.55}
+.audcard ul{margin:0 0 18px; padding:0; list-style:none}
+.audcard li{font-size:13px; color:var(--ink-soft); padding:7px 0 7px 18px; border-top:1px solid var(--line-soft); position:relative}
+.audcard li::before{content:"→"; position:absolute; left:0; color:var(--accent); font:500 12px "IBM Plex Mono",monospace}
+.audcard .go{margin-top:auto; font:500 12px "IBM Plex Mono",monospace; color:var(--accent)}
+
+/* how it works */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:26px; border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden}
+.step{padding:22px 20px 20px; border-left:1px solid var(--line-soft); position:relative}
+.step:first-child{border-left:none}
+.step .n{font:500 12px "IBM Plex Mono",monospace; color:var(--accent)}
+.step h3{font:600 15px "IBM Plex Sans"; margin:10px 0 6px}
+.step p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.5}
+.step .t{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-top:12px}
+
+/* formats */
+.formats{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; margin-top:26px}
+.fmt{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 18px 16px}
+.fmt h3{font:600 15px "IBM Plex Sans"; margin:0 0 6px}
+.fmt p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.55}
+.fmt .m{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:12px; padding-top:10px; border-top:1px solid var(--line-soft)}
+
+/* straight answers */
+.answers{margin-top:26px; border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden}
+.ans{display:grid; grid-template-columns:280px 1fr; gap:20px; padding:20px 24px; border-top:1px solid var(--line-soft)}
+.ans:first-child{border-top:none}
+.ans .q{font:600 15px/1.4 "IBM Plex Serif",Georgia,serif}
+.ans .a{font-size:14px; color:var(--ink-soft); line-height:1.6; max-width:44em}
+
+/* cases */
+.cases{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:26px}
+.case{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:24px 24px 20px}
+.case .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint)}
+.case h3{font:600 18px/1.3 "IBM Plex Serif",Georgia,serif; margin:12px 0 8px; text-wrap:balance}
+.case p{font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; line-height:1.55}
+.case .facts{display:flex; gap:24px; border-top:1px solid var(--line-soft); padding-top:12px; flex-wrap:wrap}
+.case .facts div{font:400 11px/1.5 "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.case .facts b{display:block; font:600 15px "IBM Plex Serif",Georgia,serif; color:var(--ink)}
+.case .facts b sup{font:500 10px "IBM Plex Sans"; color:var(--amber)}
+
+/* team band */
+.teamband{margin-top:64px; background:var(--hero); color:var(--hero-ink)}
+.teamin{display:grid; grid-template-columns:1.3fr 1fr; gap:40px; padding:56px 0}
+.teamband .k{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:var(--hero-accent)}
+.teamband h2{font:600 30px/1.2 "IBM Plex Serif",Georgia,serif; margin:14px 0 12px; text-wrap:balance}
+.teamband p{font-size:15px; color:var(--hero-soft); margin:0 0 20px; max-width:36em; line-height:1.65}
+.teamavatars{display:flex; margin:0 0 8px}
+.teamavatars .avatar{width:44px; height:44px; border-radius:50%; background:#1D3550; color:var(--hero-accent); display:flex; align-items:center; justify-content:center; font:600 13px "IBM Plex Sans"; border:2px solid var(--hero); margin-left:-8px}
+.teamavatars .avatar:first-child{margin-left:0}
+.teamnote{font:400 11px "IBM Plex Mono",monospace; color:var(--hero-soft)}
+.askform{background:rgba(255,255,255,.04); border:1px solid var(--hero-line); border-radius:8px; padding:24px; align-self:start}
+.askform .k2{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--amber)}
+.askform h3{font:600 18px "IBM Plex Serif",Georgia,serif; margin:10px 0 12px; color:var(--hero-ink)}
+.askform input,.askform textarea{width:100%; border:1px solid var(--hero-line); border-radius:6px; background:#0F2133; color:var(--hero-ink); font:400 13px "IBM Plex Sans"; padding:11px 12px; margin-bottom:10px; resize:vertical}
+.askform input::placeholder,.askform textarea::placeholder{color:#6E8499}
+.askform button{width:100%; border:none; background:var(--amber); color:#fff; font:500 14px "IBM Plex Sans"; padding:12px; border-radius:6px; cursor:pointer}
+.askform .fine{font:400 11px/1.5 "IBM Plex Mono",monospace; color:var(--hero-soft); margin-top:10px}
+
+footer{border-top:1px solid var(--line); background:var(--surface)}
+.footin{display:flex; justify-content:space-between; gap:24px; padding:28px 0 36px; flex-wrap:wrap; font-size:13px; color:var(--ink-faint)}
+.footin .m1{font:600 16px "IBM Plex Serif",Georgia,serif; color:var(--ink)}
+.footin .m2{font:400 10px/1.6 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase}
+
+@media (max-width:900px){
+  nav.faces{display:none}
+  .phead h1{font-size:31px}
+  .steps{grid-template-columns:1fr 1fr}
+  .step{border-left:none; border-top:1px solid var(--line-soft)}
+  .cases{grid-template-columns:1fr}
+  .teamin{grid-template-columns:1fr}
+  .ans{grid-template-columns:1fr; gap:8px}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="ribbon">Design mockup · proposed partner page for kumpula.science · figures marked ◦ are illustrative</div>
+
+<header class="top">
+  <div class="shell topin">
+    <div class="mark"><span class="m1">Kumpula</span><span class="m2">A University of Helsinki campus</span></div>
+    <nav class="faces">
+      <a href="index.html">Explore</a>
+      <a class="on" href="partner.html">Partner</a>
+      <a href="#">Join</a>
+      <a href="#">Community</a>
+    </nav>
+    <div class="top-right">
+      <span class="lang"><b>EN</b> · FI · SV</span>
+      <a class="ask-btn" style="display:inline-block;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Ask Kumpula</a>
+    </div>
+  </div>
+</header>
+
+<div class="phead">
+  <div class="shell">
+    <p class="kicker">Partner · Work with the hill</p>
+    <h1>Bring us a problem. We'll bring the instruments.</h1>
+    <p class="sub">129 research groups, the Nordics' densest concentration of measurement science, and one door in. You don't need to know which lab you need — that's our job. Ask, and a named person replies within two working days.</p>
+  </div>
+</div>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Three ways companies use Kumpula</h2>
+    <div class="aud">
+      <div class="audcard">
+        <span class="k">Corporations</span>
+        <h3>R&amp;D depth on demand</h3>
+        <p>Standing access to capabilities you can't keep in-house — and shouldn't have to.</p>
+        <ul>
+          <li>Dedicated lab space and joint research centres on campus</li>
+          <li>Framework agreements across several groups at once</li>
+          <li>First look at doctoral talent in your field</li>
+        </ul>
+        <span class="go">→ START A CONVERSATION</span>
+      </div>
+      <div class="audcard">
+        <span class="k">Scale-ups</span>
+        <h3>Instruments you can't buy yet</h3>
+        <p>Product questions answered on research-grade equipment, at project pace.</p>
+        <ul>
+          <li>Materials characterization, simulation, measurement campaigns</li>
+          <li>Contract research with a report and a deadline</li>
+          <li>Co-funded projects when the question grows</li>
+        </ul>
+        <span class="go">→ FIND YOUR INSTRUMENT</span>
+      </div>
+      <div class="audcard">
+        <span class="k">Startups</span>
+        <h3>Founded on the hill</h3>
+        <p>The path Measurlabs took — from campus capability to company.</p>
+        <ul>
+          <li>Work next to the scientists whose methods you're building on</li>
+          <li>Licensing and spinout routes with straight terms</li>
+          <li>The Inno Team as your first business developer</li>
+        </ul>
+        <span class="go">→ TALK TO THE INNO TEAM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>How it works</h2>
+    <p class="intro">One process, whatever the question. No org chart required.</p>
+    <div class="steps">
+      <div class="step"><span class="n">01</span><h3>Ask</h3><p>One form, any language you like — a problem, not a specification.</p><div class="t">5 minutes</div></div>
+      <div class="step"><span class="n">02</span><h3>Routed</h3><p>The Inno Team finds the right group and instrument in the Graph, and a named person replies.</p><div class="t">≤ 2 working days</div></div>
+      <div class="step"><span class="n">03</span><h3>Scoped</h3><p>A call with the researchers: what's possible, what it costs, how long it takes — in writing.</p><div class="t">1–2 weeks</div></div>
+      <div class="step"><span class="n">04</span><h3>Working</h3><p>Contract, joint project, or talent route — with one point of contact throughout.</p><div class="t">AT PROJECT PACE</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Formats</h2>
+    <div class="formats">
+      <div class="fmt"><h3>Contract research &amp; measurement</h3><p>A defined question, a report, a deadline. The fastest way to use the hill.</p><div class="m">TYPICAL · WEEKS</div></div>
+      <div class="fmt"><h3>Joint funded projects</h3><p>Business Finland, EU and bilateral programmes — we co-write the application.</p><div class="m">TYPICAL · 1–3 YEARS</div></div>
+      <div class="fmt"><h3>Lab &amp; instrument access</h3><p>Research-grade instruments, operated with the people who built the methods.</p><div class="m">BOOKABLE VIA THE GRAPH</div></div>
+      <div class="fmt"><h3>Thesis &amp; talent</h3><p>A master's thesis on your problem; meet doctoral researchers before the market does.</p><div class="m">TYPICAL · 6 MONTHS</div></div>
+      <div class="fmt"><h3>Licensing &amp; spinouts</h3><p>Methods and IP with clear routes out — through Helsinki Innovation Services.</p><div class="m">WITH · HIS</div></div>
+      <div class="fmt"><h3>Locate on campus</h3><p>Space on the hill for teams that should be three hundred meters from their science.</p><div class="m">LIMITED · ASK</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Straight answers</h2>
+    <p class="intro">The questions every company actually has, answered on the page — not after three meetings.</p>
+    <div class="answers">
+      <div class="ans"><div class="q">Who owns the results?</div><div class="a">Contract research: you do, per the agreement. Joint projects: agreed up front, project by project, before any work starts. Background IP always stays with its owner. No surprises after the fact.</div></div>
+      <div class="ans"><div class="q">What does it cost?</div><div class="a">Contract work is priced per project at full cost — a scoping call gives you a written estimate before you commit anything. Co-funded projects typically carry 40–60%◦ public funding.</div></div>
+      <div class="ans"><div class="q">How fast is this, really?</div><div class="a">Reply in two working days. Scoping inside two weeks. A measurement campaign in weeks; a joint project at funding-cycle pace. If we're not the right partner, we say so in the first call and tell you who is.</div></div>
+      <div class="ans"><div class="q">Do we need to be Finnish?</div><div class="a">No. The campus works in English, and international partners use every format on this page.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>It has worked before</h2>
+    <div class="cases">
+      <div class="case">
+        <span class="k">Case file 01 · Startup → company</span>
+        <h3>Measurlabs</h3>
+        <p>Grew from the Kumpula ecosystem into a materials-testing company serving customers worldwide — industrial questions routed to academic instruments, productized.</p>
+        <div class="facts"><div><b>2017<sup>◦</sup></b>FOUNDED</div><div><b>2,000+<sup>◦</sup></b>TEST METHODS</div><div><b>40+<sup>◦</sup></b>COUNTRIES</div></div>
+      </div>
+      <div class="case">
+        <span class="k">Case file 02 · Lab → industry</span>
+        <h3>Electronics Research Laboratory</h3>
+        <p>Campus electronics expertise turned into an industry-facing lab — prototyping and instrumentation for companies that need physics-grade electronics.</p>
+        <div class="facts"><div><b>ON CAMPUS</b>LOCATION</div><div><b>PROTOTYPE → PILOT<sup>◦</sup></b>SCOPE</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="teamband">
+  <div class="shell teamin">
+    <div>
+      <span class="k">The Inno Team</span>
+      <h2>Five people. One door. Two working days.</h2>
+      <p>The Kumpula Inno Team exists to connect this campus to the world. They know the Graph, they know the groups, and they answer for the promise on this page. You will never be forwarded into silence.</p>
+      <div class="teamavatars"><div class="avatar">WT</div><div class="avatar">–</div><div class="avatar">–</div><div class="avatar">–</div><div class="avatar">–</div></div>
+      <div class="teamnote">TEAM PROFILES RENDER FROM THE GRAPH · PHOTOS AND NAMES ON THE LIVE SITE</div>
+    </div>
+    <div class="askform">
+      <span class="k2">The promise</span>
+      <h3>Ask Kumpula</h3>
+      <input type="text" placeholder="Your name and company" aria-label="Name and company">
+      <input type="text" placeholder="Email" aria-label="Email">
+      <textarea rows="4" placeholder="What's the problem? Plain language is perfect."></textarea>
+      <a style="display:block;text-align:center;background:var(--amber);color:#fff;font:500 14px 'IBM Plex Sans';padding:12px;border-radius:6px;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Send — a named person replies in 2 working days</a>
+      <div class="fine">Goes directly to the Inno Team. No newsletter, no CRM drip — a reply.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="shell footin">
+    <div><div class="m1">Kumpula</div><div class="m2">A University of Helsinki campus</div></div>
+    <div>With Helsinki Innovation Services, the City of Helsinki and FMI. ◦ figures illustrative in this mockup.</div>
+  </div>
+</footer>
+
+</body>
+</html>

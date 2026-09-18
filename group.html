@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Atmospheric Aerosols Research Group, INAR — a Kumpula Graph group page. Prototype.">
+</head>
+<body style="margin:0">
+<title>Kumpula Group Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F5F8FA; --surface:#FFFFFF; --ink:#101C27; --ink-soft:#3D4E5C; --ink-faint:#6B7C8B;
+  --line:#D7E0E7; --line-soft:#E6EDF2;
+  --accent:#155FA0; --accent-ink:#0F477A; --accent-wash:#E9F1F8;
+  --amber:#B3661C; --amber-wash:#F9F1E5;
+  --bar:#155FA0; --bar-dim:#9DBEDC;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+    --line:#2A3844; --line-soft:#202C36;
+    --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+    --amber:#D9924B; --amber-wash:#292015;
+    --bar:#5FA0DC; --bar-dim:#33546E;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+  --line:#2A3844; --line-soft:#202C36;
+  --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+  --amber:#D9924B; --amber-wash:#292015;
+  --bar:#5FA0DC; --bar-dim:#33546E;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased}
+.shell{max-width:1080px; margin:0 auto; padding:0 28px}
+a{color:inherit; text-decoration:none}
+.ribbon{background:var(--amber-wash); color:var(--amber); font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:8px 12px}
+.top{border-bottom:1px solid var(--line); background:var(--surface)}
+.topin{display:flex; align-items:center; gap:28px; height:64px}
+.mark{display:flex; flex-direction:column; line-height:1.1}
+.mark .m1{font:600 19px "IBM Plex Serif",Georgia,serif}
+.mark .m2{font:400 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-top:3px}
+nav.faces{display:flex; gap:22px; margin-left:12px}
+nav.faces a{font:500 14px "IBM Plex Sans"; color:var(--ink-soft); padding:6px 2px; border-bottom:2px solid transparent}
+nav.faces a:hover{color:var(--accent); border-color:var(--accent)}
+nav.faces a.on{color:var(--ink); border-color:var(--accent)}
+.top-right{margin-left:auto; display:flex; align-items:center; gap:16px}
+.lang{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.lang b{color:var(--ink); font-weight:500}
+.ask-btn{background:var(--accent); color:#fff; font:500 13px "IBM Plex Sans"; padding:9px 16px; border-radius:6px; border:none; cursor:pointer}
+.ask-btn:hover{background:var(--accent-ink)}
+
+.crumbs{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint); padding:18px 0 0}
+.crumbs a{color:var(--accent)}
+.crumbs span{margin:0 6px}
+
+/* group header */
+.ghead{display:grid; grid-template-columns:1.6fr 1fr; gap:28px; padding:22px 0 30px; border-bottom:1px solid var(--line)}
+.ghead h1{font:600 36px/1.15 "IBM Plex Serif",Georgia,serif; margin:8px 0 10px; letter-spacing:-.01em; text-wrap:balance}
+.dept{font:500 12px "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
+.ghead p.what{font:400 16px/1.6 "IBM Plex Sans"; color:var(--ink-soft); margin:0 0 16px; max-width:36em}
+.tags{display:flex; flex-wrap:wrap; gap:8px}
+.tag{font:400 12px "IBM Plex Mono",monospace; color:var(--accent); background:var(--accent-wash); border-radius:99px; padding:5px 12px}
+.askcard{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:20px 20px 18px; align-self:start}
+.askcard .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--amber)}
+.askcard h3{font:600 17px/1.35 "IBM Plex Serif",Georgia,serif; margin:10px 0 6px}
+.askcard p{font-size:13px; color:var(--ink-soft); margin:0 0 14px; line-height:1.5}
+.askcard button{width:100%; border:none; background:var(--accent); color:#fff; font:500 14px "IBM Plex Sans"; padding:12px; border-radius:6px; cursor:pointer}
+.askcard button:hover{background:var(--accent-ink)}
+.askcard .who{display:flex; align-items:center; gap:10px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft)}
+.avatar{width:34px; height:34px; border-radius:50%; background:var(--accent-wash); color:var(--accent); display:flex; align-items:center; justify-content:center; font:600 12px "IBM Plex Sans"; flex:none}
+.askcard .who .n{font:500 13px "IBM Plex Sans"}
+.askcard .who .r{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint)}
+
+/* evidence band */
+.evidence{background:var(--surface); border-bottom:1px solid var(--line)}
+.evin{display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:0; padding:0}
+.evcell{padding:22px 22px 18px; border-left:1px solid var(--line-soft)}
+.evcell:first-child{border-left:none; padding-left:0}
+.evcell .l{font:500 10px/1.4 "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px}
+.evcell .n{font:600 26px/1 "IBM Plex Serif",Georgia,serif; font-variant-numeric:tabular-nums}
+.evcell .n sup{font:500 12px "IBM Plex Sans"; color:var(--amber)}
+.evcell .s{font:400 12px "IBM Plex Sans"; color:var(--ink-faint); margin-top:6px}
+.chart{display:flex; align-items:flex-end; gap:5px; height:64px; margin-top:2px}
+.chart .b{flex:1; background:var(--bar-dim); border-radius:3px 3px 0 0; position:relative; min-width:10px; cursor:default}
+.chart .b:last-child{background:var(--bar)}
+.chart .b:hover{background:var(--bar)}
+.chart .b .tip{display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:var(--ink); color:var(--paper); font:500 11px "IBM Plex Mono",monospace; padding:4px 8px; border-radius:4px; white-space:nowrap; z-index:2}
+.chart .b:hover .tip{display:block}
+.chart .b .end{position:absolute; bottom:calc(100% + 4px); left:50%; transform:translateX(-50%); font:500 11px "IBM Plex Mono",monospace; color:var(--ink-soft)}
+.axis{display:flex; gap:5px; margin-top:6px}
+.axis span{flex:1; font:400 10px "IBM Plex Mono",monospace; color:var(--ink-faint); text-align:center; min-width:10px}
+.evmeta{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint); padding:12px 0 14px; display:flex; gap:18px; flex-wrap:wrap}
+.evmeta .dot{color:var(--accent)}
+
+section.blk{padding:52px 0 4px}
+.blk h2{font:600 24px/1.2 "IBM Plex Serif",Georgia,serif; margin:0 0 6px}
+.blk p.intro{color:var(--ink-soft); margin:4px 0 0; max-width:46em}
+.grid3{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-top:24px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 18px 16px}
+.card .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:10px}
+.card h3{font:600 15px "IBM Plex Sans"; margin:0 0 6px}
+.card p{font-size:13.5px; color:var(--ink-soft); margin:0; line-height:1.55}
+.card .avail{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:12px; padding-top:10px; border-top:1px solid var(--line-soft)}
+.avail b{color:var(--accent); font-weight:500}
+
+/* people */
+.people{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:24px}
+.person{display:flex; gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:14px}
+.person .avatar{width:40px; height:40px; font-size:13px}
+.person .n{font:600 14px "IBM Plex Sans"}
+.person .r{font:400 11.5px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:2px}
+.peoplenote{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:14px}
+
+/* pubs */
+.pubs{margin-top:24px; border:1px solid var(--line); border-radius:8px; background:var(--surface); overflow:hidden}
+.pub{display:grid; grid-template-columns:70px 1fr auto; gap:16px; padding:16px 20px; border-top:1px solid var(--line-soft); align-items:baseline}
+.pub:first-child{border-top:none}
+.pub .y{font:500 13px "IBM Plex Mono",monospace; color:var(--ink-faint); font-variant-numeric:tabular-nums}
+.pub .t{font:500 14.5px/1.45 "IBM Plex Serif",Georgia,serif}
+.pub .v{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:3px}
+.pub .doi{font:500 12px "IBM Plex Mono",monospace; color:var(--accent); white-space:nowrap}
+
+/* work-with band */
+.routes{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin-top:24px}
+.route{border:1px solid var(--line); border-radius:8px; background:var(--surface); padding:18px 18px 16px}
+.route h3{font:600 15px "IBM Plex Sans"; margin:0 0 6px}
+.route p{font-size:13px; color:var(--ink-soft); margin:0 0 12px; line-height:1.5}
+.route .go{font:500 12px "IBM Plex Mono",monospace; color:var(--accent)}
+.promiseline{margin-top:18px; background:var(--amber-wash); border:1px solid var(--amber); border-radius:8px; padding:14px 18px; font:500 14px/1.5 "IBM Plex Serif",Georgia,serif}
+.promiseline b{color:var(--amber); font:500 11px "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; margin-right:10px}
+
+/* related */
+.relrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
+.rel{font:400 12.5px "IBM Plex Mono",monospace; color:var(--ink-soft); border:1px solid var(--line); background:var(--surface); border-radius:99px; padding:7px 14px; cursor:pointer}
+.rel:hover{color:var(--accent); border-color:var(--accent)}
+.rel b{color:var(--accent); font-weight:500}
+
+footer{margin-top:64px; border-top:1px solid var(--line); background:var(--surface)}
+.footin{display:flex; justify-content:space-between; gap:24px; padding:28px 0 36px; flex-wrap:wrap; font-size:13px; color:var(--ink-faint)}
+.footin .m1{font:600 16px "IBM Plex Serif",Georgia,serif; color:var(--ink)}
+.footin .m2{font:400 10px/1.6 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase}
+
+@media (max-width:900px){
+  .ghead{grid-template-columns:1fr}
+  .evin{grid-template-columns:1fr 1fr}
+  .evcell{border-left:none; border-top:1px solid var(--line-soft); padding-left:0}
+  nav.faces{display:none}
+  .ghead h1{font-size:28px}
+  .pub{grid-template-columns:56px 1fr}
+  .pub .doi{display:none}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="ribbon">Design mockup · real group from Kumpula Innovation Dashboard v8 · figures marked ◦ and publication titles are illustrative</div>
+
+<header class="top">
+  <div class="shell topin">
+    <div class="mark"><span class="m1">Kumpula</span><span class="m2">A University of Helsinki campus</span></div>
+    <nav class="faces">
+      <a class="on" href="index.html">Explore</a>
+      <a href="partner.html">Partner</a>
+      <a href="#">Join</a>
+      <a href="#">Community</a>
+    </nav>
+    <div class="top-right">
+      <span class="lang"><b>EN</b> · FI · SV</span>
+      <a class="ask-btn" style="display:inline-block;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Ask Kumpula</a>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="crumbs"><a href="index.html">Explore</a><span>/</span><a href="#">Atmosphere &amp; Climate</a><span>/</span>Atmospheric Aerosols Research Group</div>
+
+  <div class="ghead">
+    <div>
+      <div class="dept">INAR · Institute for Atmospheric and Earth System Research</div>
+      <h1>Atmospheric Aerosols Research Group</h1>
+      <p class="what">We study the physical properties of aerosol particles and the processes that modify their populations — new particle formation, growth, aerosol–cloud interactions — to reduce the uncertainties in climate and health impacts. If your question involves what's in the air and why, it probably passes through this hallway.</p>
+      <div class="tags"><span class="tag">Atmosphere &amp; Climate · core</span><span class="tag">Math &amp; Inversion</span></div>
+    </div>
+    <div class="askcard">
+      <span class="k">The promise</span>
+      <h3>Ask for an introduction</h3>
+      <p>Your question goes to the Inno Team, who route it to the right person here. A named person replies within two working days.</p>
+      <a style="display:block;text-align:center;background:var(--accent);color:#fff;font:500 14px 'IBM Plex Sans';padding:12px;border-radius:6px;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Introduction%20request%3A%20Atmospheric%20Aerosols%20Research%20Group">Ask about this group</a>
+      <div class="who">
+        <div class="avatar">IT</div>
+        <div><div class="n">Kumpula Inno Team</div><div class="r">YOUR ROUTE IN · REPLIES &lt; 2 WORKING DAYS</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="evidence">
+  <div class="shell">
+    <div class="evin">
+      <div class="evcell">
+        <div class="l">Publications per year ◦</div>
+        <div class="chart" id="pubchart"></div>
+        <div class="axis" id="pubaxis"></div>
+      </div>
+      <div class="evcell"><div class="l">People</div><div class="n">24<sup>◦</sup></div><div class="s">incl. 11 doctoral researchers</div></div>
+      <div class="evcell"><div class="l">Active projects</div><div class="n">7<sup>◦</sup></div><div class="s">3 with industry partners</div></div>
+      <div class="evcell"><div class="l">Openings</div><div class="n">2<sup>◦</sup></div><div class="s">postdoc · doctoral researcher</div></div>
+    </div>
+    <div class="evmeta"><span><span class="dot">●</span> Rendered from the Kumpula Graph · <span id="stamp">today</span></span><span>◦ illustrative figures for this mockup</span></div>
+  </div>
+</div>
+
+<section class="blk">
+  <div class="shell">
+    <h2>What we can do — in your language</h2>
+    <p class="intro">Written for the visitor with a problem, not for the conference. Each capability links to the instruments and people behind it.</p>
+    <div class="grid3">
+      <div class="card"><span class="k">Measure</span><h3>Particle formation &amp; air quality measurement</h3><p>Long-term and campaign measurements of aerosol formation, concentration and composition — outdoors, indoors, or at your site.</p><div class="avail">VIA · SMEAR STATIONS · MOBILE UNITS</div></div>
+      <div class="card"><span class="k">Model</span><h3>From measurement to prediction</h3><p>Process models and machine learning that turn measurement series into forecasts — of new particle formation, urban air quality, or product behaviour.</p><div class="avail">VIA · MODELS + CSC COMPUTING</div></div>
+      <div class="card"><span class="k">Advise</span><h3>Instrumentation &amp; method development</h3><p>Two decades of building and calibrating aerosol instruments. If you're developing a sensor or need one validated, start here.</p><div class="avail">VIA · CALIBRATION LAB · <b>BOOKABLE</b></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>People</h2>
+    <div class="people">
+      <div class="person"><div class="avatar">KL</div><div><div class="n">Prof. Katrianne Lehtipalo</div><div class="r">GROUP LEADER</div></div></div>
+      <div class="person"><div class="avatar">··</div><div><div class="n">Senior researchers</div><div class="r">RENDERS FROM THE GRAPH</div></div></div>
+      <div class="person"><div class="avatar">··</div><div><div class="n">Doctoral researchers</div><div class="r">RENDERS FROM THE GRAPH</div></div></div>
+      <div class="person"><div class="avatar">+</div><div><div class="n">The whole group</div><div class="r">24 PEOPLE · 9 NATIONALITIES ◦</div></div></div>
+    </div>
+    <p class="peoplenote">Group and leader are real, from Dashboard v8. Member listings render from the Graph on the live site — and no one is ever scored or ranked.</p>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Recent work</h2>
+    <div class="pubs">
+      <div class="pub"><div class="y">2026 ◦</div><div><div class="t">Molecular-cluster observations constrain new particle formation rates in boreal air</div><div class="v">ATMOSPHERIC CHEMISTRY AND PHYSICS</div></div><a class="doi" href="#">DOI →</a></div>
+      <div class="pub"><div class="y">2026 ◦</div><div><div class="t">A machine-learning emulator for urban aerosol dynamics</div><div class="v">NPJ CLIMATE AND ATMOSPHERIC SCIENCE</div></div><a class="doi" href="#">DOI →</a></div>
+      <div class="pub"><div class="y">2025 ◦</div><div><div class="t">Twenty years of SMEAR II: what continuous measurement taught us about the atmosphere</div><div class="v">NATURE REVIEWS EARTH &amp; ENVIRONMENT</div></div><a class="doi" href="#">DOI →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Working with this group</h2>
+    <div class="routes">
+      <div class="route"><h3>Contract measurement</h3><p>A defined measurement or analysis, delivered with a report. Fastest route; standard terms.</p><span class="go">→ HOW IT WORKS</span></div>
+      <div class="route"><h3>Joint research project</h3><p>Co-funded R&amp;D — Business Finland, EU or bilateral. For questions that need months, not weeks.</p><span class="go">→ FUNDING ROUTES</span></div>
+      <div class="route"><h3>Thesis &amp; talent</h3><p>A master's thesis on your problem, or meet the doctoral researchers before anyone else does.</p><span class="go">→ TALENT ROUTES</span></div>
+    </div>
+    <div class="promiseline"><b>The promise</b>Whichever route — a named person from the Inno Team replies within two working days.</div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <h2>Nearby in the Graph</h2>
+    <div class="relrow">
+      <span class="rel"><b>group</b> · Computational Aerosol Physics</span>
+      <span class="rel"><b>group</b> · Polar and Arctic Atmospheric Research</span>
+      <span class="rel"><b>facility</b> · SMEAR II Hyytiälä</span>
+      <span class="rel"><b>spinout</b> · Airmodus (acquired 2024)</span>
+      <span class="rel"><b>spinout</b> · Karsa</span>
+      <span class="rel"><b>partner</b> · Finnish Meteorological Institute</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell footin">
+    <div><div class="m1">Kumpula</div><div class="m2">A University of Helsinki campus</div></div>
+    <div>Every figure on this page is rendered from the Kumpula Graph and carries its date.</div>
+  </div>
+</footer>
+
+<script>
+try{
+  var d=new Date();
+  document.getElementById('stamp').textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' 06:00';
+}catch(e){}
+// publications-per-year mini chart (single series, endpoint labeled, hover tooltips)
+(function(){
+  var data=[{y:'19',v:14},{y:'20',v:17},{y:'21',v:15},{y:'22',v:19},{y:'23',v:22},{y:'24',v:21},{y:'25',v:26},{y:'26',v:18}];
+  var max=Math.max.apply(null,data.map(function(d){return d.v}));
+  var c=document.getElementById('pubchart'), a=document.getElementById('pubaxis');
+  if(!c) return;
+  data.forEach(function(d,i){
+    var b=document.createElement('div'); b.className='b';
+    b.style.height=Math.round(d.v/max*100)+'%';
+    var tip=document.createElement('span'); tip.className='tip'; tip.textContent='20'+d.y+' · '+d.v+' publications';
+    b.appendChild(tip);
+    if(i===data.length-1){var e=document.createElement('span'); e.className='end'; e.textContent=d.v; b.appendChild(e);}
+    c.appendChild(b);
+    var s=document.createElement('span'); s.textContent=(i===0||i===data.length-1)?"'"+d.y:''; a.appendChild(s);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kumpula front page — hel.fi look-and-feel blend variant. Prototype.">
+</head>
+<body style="margin:0">
+<title>Kumpula City Blend</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FFFFFF; --surface:#FFFFFF; --ink:#1A1A1A; --ink-soft:#43505A; --ink-faint:#6E7A84;
+  --line:#DEDFE1; --line-soft:#ECEDEE;
+  --accent:#0072C6; --accent-ink:#005799; --accent-wash:#E8F3FB;
+  --amber:#8A6400; --amber-wash:#FFF0C2; --summer:#FFC61E;
+  --hero:#0E1B26; --hero-ink:#F2F7FB; --hero-soft:#A9BCCB; --hero-line:#283D50; --hero-accent:#7FB4E2;
+  --bar:#0072C6;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10161C; --surface:#171F27; --ink:#EAF0F5; --ink-soft:#B3C0CA; --ink-faint:#7E8B96;
+    --line:#2C3944; --line-soft:#222D36;
+    --accent:#5FA8E6; --accent-ink:#8FC3F0; --accent-wash:#1B2A38;
+    --amber:#E3B23C; --amber-wash:#2A2210; --summer:#E3B23C;
+    --hero:#0B1621; --hero-ink:#F2F7FB; --hero-soft:#A9BCCB; --hero-line:#283D50; --hero-accent:#7FB4E2;
+    --bar:#5FA8E6;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10161C; --surface:#171F27; --ink:#EAF0F5; --ink-soft:#B3C0CA; --ink-faint:#7E8B96;
+  --line:#2C3944; --line-soft:#222D36;
+  --accent:#5FA8E6; --accent-ink:#8FC3F0; --accent-wash:#1B2A38;
+  --amber:#E3B23C; --amber-wash:#2A2210; --summer:#E3B23C;
+  --hero:#0B1621; --hero-ink:#F2F7FB; --hero-soft:#A9BCCB; --hero-line:#283D50; --hero-accent:#7FB4E2;
+  --bar:#5FA8E6;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font:15px/1.6 "Archivo","Helsinki Grotesk",Arial,sans-serif; -webkit-font-smoothing:antialiased}
+.shell{max-width:1120px; margin:0 auto; padding:0 28px}
+a{color:inherit; text-decoration:none}
+.koro{background:var(--surface); line-height:0}
+.koro svg{width:100%; height:12px; display:block}
+
+.ribbon{background:var(--amber-wash); color:var(--amber); font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:8px 12px}
+.ribbon b{font-weight:500}
+
+.top{border-bottom:1px solid var(--line); background:var(--surface)}
+.topin{display:flex; align-items:center; gap:28px; height:64px}
+.mark{display:flex; flex-direction:column; line-height:1.05}
+.mark .m1{font:800 20px "Archivo",Arial,sans-serif; letter-spacing:-.01em}
+.mark .m2{font:400 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-top:3px}
+nav.faces{display:flex; gap:22px; margin-left:12px}
+nav.faces a{font:600 14px "Archivo"; color:var(--ink-soft); padding:6px 2px; border-bottom:3px solid transparent}
+nav.faces a:hover{color:var(--accent); border-color:var(--accent)}
+nav.faces a.on{color:var(--ink); border-color:var(--accent)}
+.top-right{margin-left:auto; display:flex; align-items:center; gap:16px}
+.lang{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.lang b{color:var(--ink); font-weight:500}
+.ask-btn{background:var(--accent); color:#fff; font:700 13px "Archivo"; padding:10px 18px; border-radius:2px; border:none; cursor:pointer}
+.ask-btn:hover{background:var(--accent-ink)}
+
+.hero{background:var(--hero); color:var(--hero-ink); position:relative; overflow:hidden}
+.hero canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.heroin{position:relative; padding:72px 0 60px; max-width:660px}
+.hero .kicker{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:var(--hero-accent); margin:0 0 18px}
+.hero h1{font:800 48px/1.06 "Archivo",Arial,sans-serif; margin:0 0 16px; letter-spacing:-.02em; text-wrap:balance}
+.hero p.sub{font:400 17px/1.6 "Archivo"; color:var(--hero-soft); margin:0 0 28px; max-width:34em}
+.searchbox{display:flex; background:#FFFFFF; border-radius:2px; overflow:hidden; max-width:560px; box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.searchbox input{flex:1; border:none; outline:none; font:400 15px "Archivo"; padding:15px 18px; color:#1A1A1A; background:#FFFFFF; min-width:0}
+.searchbox input::placeholder{color:#6E7A84}
+.searchbox button{border:none; background:var(--accent); color:#fff; font:700 14px "Archivo"; padding:0 24px; cursor:pointer}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.chip{font:400 12px "IBM Plex Mono",monospace; color:var(--hero-soft); border:1px solid var(--hero-line); border-radius:2px; padding:6px 12px; cursor:pointer; background:transparent}
+.chip:hover{color:var(--hero-ink); border-color:var(--hero-accent)}
+
+.proof{background:var(--surface); border-bottom:1px solid var(--line)}
+.proofin{display:grid; grid-template-columns:repeat(5,1fr); gap:0}
+.stat{padding:22px 20px 20px; border-left:1px solid var(--line-soft)}
+.stat:first-child{border-left:none}
+.stat .n{font:800 30px/1 "Archivo",Arial,sans-serif; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.stat .n sup{font:600 13px "Archivo"; color:var(--amber); vertical-align:super}
+.stat .l{font:500 11px/1.4 "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-top:8px}
+.proofmeta{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint); padding:0 0 14px; display:flex; gap:18px; flex-wrap:wrap}
+.proofmeta .dot{color:var(--accent)}
+
+section.blk{padding:64px 0 8px}
+.blk-head{display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-bottom:22px}
+.blk h2{font:800 27px/1.15 "Archivo",Arial,sans-serif; margin:0; letter-spacing:-.015em}
+.blk .see{font:600 13px "IBM Plex Mono",monospace; color:var(--accent); white-space:nowrap}
+.blk .see:hover{color:var(--accent-ink)}
+.blk p.intro{color:var(--ink-soft); margin:6px 0 0; max-width:46em}
+
+.themes{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px}
+.theme{background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:18px 18px 16px; cursor:pointer; transition:border-color .15s}
+.theme:hover{border-color:var(--accent)}
+.theme .t{font:700 15px "Archivo"}
+.theme .t .c{display:block; font:500 12px "IBM Plex Mono",monospace; color:var(--ink-faint); font-variant-numeric:tabular-nums; margin-top:5px}
+.theme .t .c sup{color:var(--amber)}
+.theme .barrow{height:5px; background:var(--line-soft); border-radius:0; margin:12px 0 10px; overflow:hidden}
+.theme .barrow i{display:block; height:100%; background:var(--bar)}
+.theme .d{font:400 13px/1.5 "Archivo"; color:var(--ink-soft)}
+.themenote{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:14px}
+
+.facesgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-top:26px}
+.face{background:var(--surface); border:1px solid var(--line); border-radius:2px; border-top:4px solid var(--accent); padding:20px 20px 18px; transition:border-color .15s}
+.face:hover{border-color:var(--accent)}
+.face .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:12px}
+.face h3{font:700 17px "Archivo"; margin:0 0 8px}
+.face p{font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; line-height:1.55}
+.face .go{font:600 12px "IBM Plex Mono",monospace; color:var(--accent)}
+
+.split{display:grid; grid-template-columns:1.4fr 1fr; gap:14px; margin-top:26px}
+.case{background:var(--surface); border:1px solid var(--line); border-radius:2px; padding:26px 26px 22px}
+.case .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint)}
+.case h3{font:700 20px/1.25 "Archivo"; margin:12px 0 10px; text-wrap:balance; letter-spacing:-.01em}
+.case p{font-size:14px; color:var(--ink-soft); margin:0 0 14px; max-width:38em}
+.case .facts{display:flex; gap:26px; border-top:1px solid var(--line-soft); padding-top:14px; flex-wrap:wrap}
+.case .facts div{font:400 12px/1.5 "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.case .facts b{display:block; font:800 16px "Archivo"; color:var(--ink); font-variant-numeric:tabular-nums}
+.case .facts b sup{font:600 11px "Archivo"; color:var(--amber)}
+.promise{background:var(--summer); border:none; border-radius:2px; padding:26px 24px 22px; display:flex; flex-direction:column}
+.promise .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:#1A1A1A}
+.promise h3{font:800 21px/1.25 "Archivo"; margin:12px 0 8px; color:#1A1A1A; letter-spacing:-.01em}
+.promise p{font-size:13.5px; color:#33393E; margin:0 0 18px; line-height:1.55}
+.promise .row{display:flex; gap:8px; margin-top:auto}
+.promise input{flex:1; border:1px solid #1A1A1A; border-radius:2px; font:400 13px "Archivo"; padding:10px 12px; background:#FFFFFF; color:#1A1A1A; min-width:0}
+.promise button{border:none; background:#1A1A1A; color:#FFC61E; font:700 13px "Archivo"; padding:10px 16px; border-radius:2px; cursor:pointer; white-space:nowrap}
+
+.files{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px}
+.file{border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:0; background:var(--surface); padding:18px 18px 16px}
+.file .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint)}
+.file h3{font:700 16px "Archivo"; margin:10px 0 6px}
+.file p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.55}
+
+footer{margin-top:72px; border-top:1px solid var(--line); background:var(--surface)}
+.footin{display:flex; justify-content:space-between; gap:24px; padding:32px 0 40px; flex-wrap:wrap}
+.footin .col .h{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px}
+.footin .col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:7px}
+.footin .col a:hover{color:var(--accent)}
+.footin .brand .m1{font:800 17px "Archivo"}
+.footin .brand .m2{font:400 10px/1.6 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
+.footin .brand p{font-size:12.5px; color:var(--ink-faint); max-width:26em; margin:12px 0 0}
+
+@media (max-width:900px){
+  .proofin{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none; border-top:1px solid var(--line-soft)}
+  .split{grid-template-columns:1fr}
+  nav.faces{display:none}
+  .hero h1{font-size:34px}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="ribbon">Design mockup · look &amp; feel blend: kumpula.science × hel.fi conventions · data live from Dashboard v8 · figures marked <b>◦</b> are illustrative</div>
+
+<header class="top">
+  <div class="shell topin">
+    <div class="mark"><span class="m1">Kumpula</span><span class="m2">A University of Helsinki campus</span></div>
+    <nav class="faces">
+      <a class="on" href="#explore">Explore</a>
+      <a href="#partner">Partner</a>
+      <a href="#join">Join</a>
+      <a href="#community">Community</a>
+    </nav>
+    <div class="top-right">
+      <span class="lang"><b>EN</b> · FI · SV</span>
+      <a class="ask-btn" style="display:inline-block;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Ask Kumpula</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="shell"><div class="heroin">
+    <p class="kicker">The largest cluster of natural sciences in the Nordics</p>
+    <h1>Helsinki does its hardest science on this hill.</h1>
+    <p class="sub">129 research groups across six departments — atmosphere, quantum, AI, materials, near space — rendered live from the Kumpula Graph. Don't take our word for it. Search it.</p>
+    <div class="searchbox">
+      <input id="q" type="text" placeholder="Who works on atmospheric aerosols?" aria-label="Search the campus">
+      <button>Search</button>
+    </div>
+    <div class="chips">
+      <button class="chip">quantum materials</button>
+      <button class="chip">inverse problems</button>
+      <button class="chip">space weather</button>
+      <button class="chip">who can characterize my material?</button>
+    </div>
+  </div></div>
+</div>
+
+<div class="koro"><svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L120 0 L120 4 Q115 10 110 4 T100 4 T90 4 T80 4 T70 4 T60 4 T50 4 T40 4 T30 4 T20 4 T10 4 T0 4 Z" fill="var(--hero)"/></svg></div>
+
+<div class="proof">
+  <div class="shell">
+    <div class="proofin">
+      <div class="stat"><div class="n">129</div><div class="l">Research groups</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Departments + FMI on campus</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Spinouts on the ledger</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">R2B projects in the pipeline</div></div>
+      <div class="stat"><div class="n">2,410<sup>◦</sup></div><div class="l">Publications this year</div></div>
+    </div>
+    <div class="proofmeta"><span><span class="dot">●</span> Rendered from the Kumpula Graph · <span id="stamp">today</span></span><span>Spinouts on the ledger: Nanoform (Nasdaq-listed) · Airmodus (acquired 2024) · Karsa · Megasense · VEIL.AI · GlucoModicum</span></div>
+  </div>
+</div>
+
+<section class="blk" id="explore">
+  <div class="shell">
+    <div class="blk-head">
+      <div><h2>What this hill works on</h2>
+      <p class="intro">Seven themes, one graph. Start from a question, land on a group — its people, its recent work, and a button to ask for an introduction.</p></div>
+      <a class="see" href="#explore">ALL 129 GROUPS →</a>
+    </div>
+    <div class="themes">
+      <div class="theme"><div class="t">Math &amp; Inversion <span class="c">47 core · 109 mapped</span></div><div class="barrow"><i style="width:100%"></i></div><div class="d">The mathematics that turns indirect measurements into images, models and certainty — the quiet backbone of the whole hill.</div></div>
+      <div class="theme"><div class="t">Atmosphere &amp; Climate <span class="c">41 core · 68 mapped</span></div><div class="barrow"><i style="width:87%"></i></div><div class="d">INAR and FMI side by side — aerosols, greenhouse gases and the measurement stations behind the numbers.</div></div>
+      <div class="theme"><div class="t">Artificial Intelligence <span class="c">29 core · 86 mapped</span></div><div class="barrow"><i style="width:62%"></i></div><div class="d">Machine learning, data science and AI methods — from foundations to atmospheric and materials applications.</div></div>
+      <div class="theme"><div class="t">Resilience &amp; Security <span class="c">24 core · 67 mapped</span></div><div class="barrow"><i style="width:51%"></i></div><div class="d">Geosciences, cyber security and urban systems — the science of coping with a changing planet.</div></div>
+      <div class="theme"><div class="t">New Materials <span class="c">14 core · 33 mapped</span></div><div class="barrow"><i style="width:30%"></i></div><div class="d">Synthesis, characterization and advanced instrumentation, from thin films to accelerator physics.</div></div>
+      <div class="theme"><div class="t">Quantum Science <span class="c">7 core · 37 mapped</span></div><div class="barrow"><i style="width:15%"></i></div><div class="d">Quantum matter, computing and sensing — theory to cryostat.</div></div>
+      <div class="theme"><div class="t">Near-Earth Space <span class="c">2 core · 9 mapped</span></div><div class="barrow"><i style="width:6%"></i></div><div class="d">Space physics and the Vlasiator simulation — modelling the plasma environment of Earth.</div></div>
+    </div>
+    <p class="themenote">Real counts from Kumpula Innovation Dashboard v8: "core" = the theme is central to the group's work; a group can map to several themes.</p>
+  </div>
+</section>
+
+<section class="blk" id="partner">
+  <div class="shell">
+    <div class="blk-head"><h2>Four ways in</h2></div>
+    <div class="facesgrid">
+      <div class="face"><span class="k">Explore</span><h3>Search the campus</h3><p>The living map: every group, spinout and facility, with the evidence behind each — updated as the science moves.</p><span class="go">→ OPEN THE MAP</span></div>
+      <div class="face"><span class="k">Partner</span><h3>Work with us</h3><p>Routes for corporations, scale-ups and startups: labs, instruments, joint projects — and a named person to talk to.</p><span class="go">→ TALK TO THE INNO TEAM</span></div>
+      <div class="face" id="join"><span class="k">Join</span><h3>Come to Kumpula</h3><p>Groups that are hiring, study paths into the hill, and what living in Helsinki is actually like.</p><span class="go">→ FIND YOUR GROUP</span></div>
+      <div class="face" id="community"><span class="k">Community</span><h3>The hill itself</h3><p>Events, people, heritage — and the partnership with the City of Helsinki and FMI that makes the cluster more than a campus.</p><span class="go">→ WHAT'S ON</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <div class="blk-head"><h2>Proof, not promises</h2><a class="see" href="#">ALL CASE FILES →</a></div>
+    <div class="split">
+      <div class="case">
+        <span class="k">Case file 01 · Materials &amp; instrumentation</span>
+        <h3>A testing startup, built on campus instruments</h3>
+        <p>Measurlabs grew from the Kumpula ecosystem into a materials-testing company serving customers worldwide — routing industrial questions to academic instruments and the people who run them. This is what the hill's capability looks like as a business.</p>
+        <div class="facts">
+          <div><b>2017<sup>◦</sup></b>Founded</div>
+          <div><b>2,000+<sup>◦</sup></b>Test methods</div>
+          <div><b>40+<sup>◦</sup></b>Countries served</div>
+        </div>
+      </div>
+      <div class="promise">
+        <span class="k">The promise</span>
+        <h3>A named person replies within two working days.</h3>
+        <p>Not a form into the void. Every inquiry lands with the Kumpula Inno Team — five people whose job is connecting this campus to the world.</p>
+        <div class="row"><input type="text" placeholder="What do you want to ask?" aria-label="Your question"><button>Ask Kumpula</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <div class="blk-head"><h2>The Kumpula Files</h2><a class="see" href="#">ALL FILES →</a></div>
+    <div class="files">
+      <div class="file"><span class="k">File · 1991</span><h3>The kernel</h3><p>Linux was born in the University of Helsinki's computer science department — the department that now lives on this hill. The open-source world runs on Kumpula lineage.</p></div>
+      <div class="file"><span class="k">File · Near space</span><h3>Vlasiator</h3><p>The world's most accurate global simulation of Earth's plasma environment, built here — physics at a scale only a handful of machines can run.</p></div>
+      <div class="file"><span class="k">File · Next door</span><h3>The weather machine</h3><p>The Finnish Meteorological Institute shares the hill — forecasts, climate records and supercomputing, three hundred meters from the lecture halls.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell footin">
+    <div class="col brand">
+      <div class="m1">Kumpula</div>
+      <div class="m2">A University of Helsinki campus</div>
+      <p>Built with the City of Helsinki and the Finnish Meteorological Institute. Every figure on this site is rendered from the Kumpula Graph and carries its date.</p>
+    </div>
+    <div class="col"><div class="h">Site</div><a href="#explore">Explore</a><a href="#partner">Partner</a><a href="#join">Join</a><a href="#community">Community</a></div>
+    <div class="col"><div class="h">Campus</div><a href="#">University of Helsinki</a><a href="#">Faculty of Science</a><a href="#">FMI</a><a href="#">City of Helsinki</a></div>
+    <div class="col"><div class="h">Data</div><a href="#">The Kumpula Graph</a><a href="#">Open data &amp; API</a><a href="#">Method notes</a></div>
+  </div>
+</footer>
+
+<script>
+// timestamp for the proof strip
+try{
+  var d=new Date();
+  document.getElementById('stamp').textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' 06:00';
+}catch(e){}
+
+// rotating search placeholder
+(function(){
+  var qs=["Who works on atmospheric aerosols?","Who can characterize my material?","Which groups use machine learning?","Who models space weather?","Who is hiring doctoral researchers?"];
+  var el=document.getElementById('q'), i=0;
+  if(!el) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  setInterval(function(){ if(document.activeElement===el||el.value) return; i=(i+1)%qs.length; el.placeholder=qs[i]; },3500);
+})();
+
+// hero field: quiet contour/particle drift, drawn once (static frame), evoking measurement
+(function(){
+  var cv=document.getElementById('field'); if(!cv) return;
+  var ctx=cv.getContext('2d');
+  function draw(){
+    var w=cv.clientWidth, h=cv.clientHeight, r=window.devicePixelRatio||1;
+    cv.width=w*r; cv.height=h*r; ctx.setTransform(r,0,0,r,0,0);
+    ctx.clearRect(0,0,w,h);
+    // dotted field
+    for(var y=14;y<h;y+=26){
+      for(var x=14;x<w;x+=26){
+        var v=Math.sin(x*0.012)+Math.cos(y*0.017)+Math.sin((x+y)*0.006);
+        var a=0.05+0.06*(v+3)/6;
+        ctx.fillStyle='rgba(127,180,226,'+a.toFixed(3)+')';
+        ctx.beginPath(); ctx.arc(x+6*Math.sin(y*0.05), y, 1.1, 0, 6.283); ctx.fill();
+      }
+    }
+    // streamlines
+    ctx.strokeStyle='rgba(127,180,226,0.16)'; ctx.lineWidth=1;
+    for(var s=0;s<5;s++){
+      ctx.beginPath();
+      var yy=h*0.15+s*h*0.18;
+      ctx.moveTo(-10,yy);
+      for(var xx=0;xx<=w+10;xx+=12){
+        ctx.lineTo(xx, yy+18*Math.sin(xx*0.008+s*1.7)+10*Math.sin(xx*0.021+s));
+      }
+      ctx.stroke();
+    }
+  }
+  draw();
+  var t; window.addEventListener('resize',function(){clearTimeout(t); t=setTimeout(draw,150);});
+})();
+</script>
+
+</body>
+</html>

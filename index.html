@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kumpula Campus — the largest cluster of natural sciences in the Nordics. Prototype.">
+</head>
+<body style="margin:0">
+<title>Kumpula Front Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F5F8FA; --surface:#FFFFFF; --ink:#101C27; --ink-soft:#3D4E5C; --ink-faint:#6B7C8B;
+  --line:#D7E0E7; --line-soft:#E6EDF2;
+  --accent:#155FA0; --accent-ink:#0F477A; --accent-wash:#E9F1F8;
+  --amber:#B3661C; --amber-wash:#F9F1E5;
+  --hero:#0C1B2A; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+  --bar:#155FA0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+    --line:#2A3844; --line-soft:#202C36;
+    --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+    --amber:#D9924B; --amber-wash:#292015;
+    --hero:#0A1723; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+    --bar:#5FA0DC;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E151C; --surface:#151E27; --ink:#E5ECF2; --ink-soft:#AEBDC9; --ink-faint:#7A8B99;
+  --line:#2A3844; --line-soft:#202C36;
+  --accent:#6FAEE4; --accent-ink:#9AC6EE; --accent-wash:#1A2836;
+  --amber:#D9924B; --amber-wash:#292015;
+  --hero:#0A1723; --hero-ink:#EAF2F9; --hero-soft:#9FB6C9; --hero-line:#24384C; --hero-accent:#7FB4E2;
+  --bar:#5FA0DC;
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--paper); color:var(--ink); font:15px/1.6 "IBM Plex Sans",system-ui,sans-serif; -webkit-font-smoothing:antialiased}
+.shell{max-width:1120px; margin:0 auto; padding:0 28px}
+a{color:inherit; text-decoration:none}
+
+/* mockup ribbon */
+.ribbon{background:var(--amber-wash); color:var(--amber); font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; text-align:center; padding:8px 12px}
+.ribbon b{font-weight:500}
+
+/* top bar */
+.top{border-bottom:1px solid var(--line); background:var(--surface)}
+.topin{display:flex; align-items:center; gap:28px; height:64px}
+.mark{display:flex; flex-direction:column; line-height:1.1}
+.mark .m1{font:600 19px "IBM Plex Serif",Georgia,serif; letter-spacing:.01em}
+.mark .m2{font:400 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin-top:3px}
+nav.faces{display:flex; gap:22px; margin-left:12px}
+nav.faces a{font:500 14px "IBM Plex Sans"; color:var(--ink-soft); padding:6px 2px; border-bottom:2px solid transparent}
+nav.faces a:hover{color:var(--accent); border-color:var(--accent)}
+nav.faces a.on{color:var(--ink); border-color:var(--accent)}
+.top-right{margin-left:auto; display:flex; align-items:center; gap:16px}
+.lang{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.lang b{color:var(--ink); font-weight:500}
+.ask-btn{background:var(--accent); color:#fff; font:500 13px "IBM Plex Sans"; padding:9px 16px; border-radius:6px; border:none; cursor:pointer}
+.ask-btn:hover{background:var(--accent-ink)}
+:root[data-theme="dark"] .ask-btn, .dark-ask{color:#0A1723}
+
+/* hero */
+.hero{background:var(--hero); color:var(--hero-ink); position:relative; overflow:hidden}
+.hero canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
+.heroin{position:relative; padding:72px 0 64px; max-width:640px}
+.hero .kicker{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:var(--hero-accent); margin:0 0 18px}
+.hero h1{font:600 46px/1.1 "IBM Plex Serif",Georgia,serif; margin:0 0 16px; letter-spacing:-.01em; text-wrap:balance}
+.hero p.sub{font:400 17px/1.6 "IBM Plex Sans"; color:var(--hero-soft); margin:0 0 28px; max-width:34em}
+.searchbox{display:flex; background:#FFFFFF; border-radius:8px; overflow:hidden; max-width:560px; box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.searchbox input{flex:1; border:none; outline:none; font:400 15px "IBM Plex Sans"; padding:15px 18px; color:#101C27; background:#FFFFFF; min-width:0}
+.searchbox input::placeholder{color:#6B7C8B}
+.searchbox button{border:none; background:var(--accent); color:#fff; font:500 14px "IBM Plex Sans"; padding:0 22px; cursor:pointer}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.chip{font:400 12px "IBM Plex Mono",monospace; color:var(--hero-soft); border:1px solid var(--hero-line); border-radius:99px; padding:6px 12px; cursor:pointer; background:transparent}
+.chip:hover{color:var(--hero-ink); border-color:var(--hero-accent)}
+
+/* proof strip */
+.proof{background:var(--surface); border-bottom:1px solid var(--line)}
+.proofin{display:grid; grid-template-columns:repeat(5,1fr); gap:0; }
+.stat{padding:22px 20px 20px; border-left:1px solid var(--line-soft)}
+.stat:first-child{border-left:none}
+.stat .n{font:600 30px/1 "IBM Plex Serif",Georgia,serif; font-variant-numeric:tabular-nums}
+.stat .n sup{font:500 13px "IBM Plex Sans"; color:var(--amber); vertical-align:super}
+.stat .l{font:500 11px/1.4 "IBM Plex Mono",monospace; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin-top:8px}
+.proofmeta{font:400 11px "IBM Plex Mono",monospace; color:var(--ink-faint); padding:0 0 14px; display:flex; gap:18px; flex-wrap:wrap}
+.proofmeta .dot{color:var(--accent)}
+
+/* sections */
+section.blk{padding:64px 0 8px}
+.blk-head{display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-bottom:22px}
+.blk h2{font:600 26px/1.2 "IBM Plex Serif",Georgia,serif; margin:0}
+.blk .see{font:500 13px "IBM Plex Mono",monospace; color:var(--accent); white-space:nowrap}
+.blk .see:hover{color:var(--accent-ink)}
+.blk p.intro{color:var(--ink-soft); margin:6px 0 0; max-width:46em}
+
+/* themes */
+.themes{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px}
+.theme{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px 18px 16px; cursor:pointer; transition:border-color .15s}
+.theme:hover{border-color:var(--accent)}
+.theme .t{font:600 15px "IBM Plex Sans"; display:flex; justify-content:space-between; align-items:baseline}
+.theme .t .c{font:500 13px "IBM Plex Mono",monospace; color:var(--ink-faint); font-variant-numeric:tabular-nums}
+.theme .t .c sup{color:var(--amber)}
+.theme .barrow{height:4px; background:var(--line-soft); border-radius:2px; margin:12px 0 10px; overflow:hidden}
+.theme .barrow i{display:block; height:100%; background:var(--bar); border-radius:2px}
+.theme .d{font:400 13px/1.5 "IBM Plex Sans"; color:var(--ink-soft)}
+.themenote{font:400 12px "IBM Plex Mono",monospace; color:var(--ink-faint); margin-top:14px}
+
+/* faces */
+.facesgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin-top:26px}
+.face{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:22px 20px 18px; transition:border-color .15s}
+.face:hover{border-color:var(--accent)}
+.face .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:12px}
+.face h3{font:600 17px "IBM Plex Serif",Georgia,serif; margin:0 0 8px}
+.face p{font-size:13.5px; color:var(--ink-soft); margin:0 0 14px; line-height:1.55}
+.face .go{font:500 12px "IBM Plex Mono",monospace; color:var(--accent)}
+
+/* case + promise */
+.split{display:grid; grid-template-columns:1.4fr 1fr; gap:14px; margin-top:26px}
+.case{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:26px 26px 22px}
+.case .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint)}
+.case h3{font:600 20px/1.3 "IBM Plex Serif",Georgia,serif; margin:12px 0 10px; text-wrap:balance}
+.case p{font-size:14px; color:var(--ink-soft); margin:0 0 14px; max-width:38em}
+.case .facts{display:flex; gap:26px; border-top:1px solid var(--line-soft); padding-top:14px; flex-wrap:wrap}
+.case .facts div{font:400 12px/1.5 "IBM Plex Mono",monospace; color:var(--ink-faint)}
+.case .facts b{display:block; font:600 16px "IBM Plex Serif",Georgia,serif; color:var(--ink); font-variant-numeric:tabular-nums}
+.case .facts b sup{font:500 11px "IBM Plex Sans"; color:var(--amber)}
+.promise{background:var(--amber-wash); border:1px solid var(--amber); border-radius:8px; padding:26px 24px 22px; display:flex; flex-direction:column}
+.promise .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--amber)}
+.promise h3{font:600 21px/1.3 "IBM Plex Serif",Georgia,serif; margin:12px 0 8px}
+.promise p{font-size:13.5px; color:var(--ink-soft); margin:0 0 18px; line-height:1.55}
+.promise .row{display:flex; gap:8px; margin-top:auto}
+.promise input{flex:1; border:1px solid var(--line); border-radius:6px; font:400 13px "IBM Plex Sans"; padding:10px 12px; background:var(--surface); color:var(--ink); min-width:0}
+.promise button{border:none; background:var(--amber); color:#fff; font:500 13px "IBM Plex Sans"; padding:10px 16px; border-radius:6px; cursor:pointer; white-space:nowrap}
+
+/* files strip */
+.files{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-top:26px}
+.file{border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; background:var(--surface); padding:18px 18px 16px}
+.file .k{font:500 10px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint)}
+.file h3{font:600 16px "IBM Plex Serif",Georgia,serif; margin:10px 0 6px}
+.file p{font-size:13px; color:var(--ink-soft); margin:0; line-height:1.55}
+
+/* footer */
+footer{margin-top:72px; border-top:1px solid var(--line); background:var(--surface)}
+.footin{display:flex; justify-content:space-between; gap:24px; padding:32px 0 40px; flex-wrap:wrap}
+.footin .col .h{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:12px}
+.footin .col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:7px}
+.footin .col a:hover{color:var(--accent)}
+.footin .brand .m1{font:600 17px "IBM Plex Serif",Georgia,serif}
+.footin .brand .m2{font:400 10px/1.6 "IBM Plex Mono",monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint)}
+.footin .brand p{font-size:12.5px; color:var(--ink-faint); max-width:26em; margin:12px 0 0}
+
+
+.results{max-width:560px; margin-top:10px; background:#FFFFFF; border-radius:8px; overflow:hidden; display:none; box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.results.on{display:block}
+.results .rmeta{font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.08em; text-transform:uppercase; color:#6B7C8B; padding:12px 16px 8px}
+.rrow{display:block; padding:10px 16px 11px; border-top:1px solid #E6EDF2; cursor:pointer}
+.rrow:hover{background:#EAF1F8}
+.rrow .rn{font:600 14px "IBM Plex Sans"; color:#101C27}
+.rrow .rd{font:400 12px/1.45 "IBM Plex Sans"; color:#3D4E5C; margin-top:2px}
+.rrow .rt{font:400 10.5px "IBM Plex Mono",monospace; color:#155FA0; margin-top:4px; letter-spacing:.06em; text-transform:uppercase}
+
+@media (max-width:900px){
+  .proofin{grid-template-columns:repeat(2,1fr)}
+  .stat{border-left:none; border-top:1px solid var(--line-soft)}
+  .split{grid-template-columns:1fr}
+  nav.faces{display:none}
+  .hero h1{font-size:34px}
+}
+@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="ribbon">Design mockup · proposed front page for kumpula.science · group, theme &amp; spinout data live from Kumpula Innovation Dashboard v8 · figures marked <b>◦</b> are illustrative</div>
+
+<header class="top">
+  <div class="shell topin">
+    <div class="mark"><span class="m1">Kumpula</span><span class="m2">A University of Helsinki campus</span></div>
+    <nav class="faces">
+      <a class="on" href="index.html">Explore</a>
+      <a href="partner.html">Partner</a>
+      <a href="#join">Join</a>
+      <a href="#community">Community</a>
+    </nav>
+    <div class="top-right">
+      <span class="lang"><b>EN</b> · FI · SV</span>
+      <a class="ask-btn" style="display:inline-block;text-decoration:none" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Ask Kumpula</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="shell"><div class="heroin">
+    <p class="kicker">The largest cluster of natural sciences in the Nordics</p>
+    <h1>Helsinki does its hardest science on this hill.</h1>
+    <p class="sub">129 research groups across six departments — atmosphere, quantum, AI, materials, near space — rendered live from the Kumpula Graph. Don't take our word for it. Search it.</p>
+    <div class="searchbox">
+      <input id="q" type="text" placeholder="Who works on atmospheric aerosols?" aria-label="Search the campus">
+      <button>Search</button>
+    </div>
+    <div class="results" id="results" role="listbox" aria-label="Search results"></div>
+    <div class="chips">
+      <button class="chip">quantum materials</button>
+      <button class="chip">inverse problems</button>
+      <button class="chip">space weather</button>
+      <button class="chip">who can characterize my material?</button>
+    </div>
+  </div></div>
+</div>
+
+<div class="proof">
+  <div class="shell">
+    <div class="proofin">
+      <div class="stat"><div class="n">129</div><div class="l">Research groups</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Departments + FMI on campus</div></div>
+      <div class="stat"><div class="n">6</div><div class="l">Spinouts on the ledger</div></div>
+      <div class="stat"><div class="n">7</div><div class="l">R2B projects in the pipeline</div></div>
+      <div class="stat"><div class="n">2,410<sup>◦</sup></div><div class="l">Publications this year</div></div>
+    </div>
+    <div class="proofmeta"><span><span class="dot">●</span> Rendered from the Kumpula Graph · v8 snapshot · <span id="stamp">today</span></span><span>Spinouts on the ledger: Nanoform (Nasdaq-listed) · Airmodus (acquired 2024) · Karsa · Megasense · VEIL.AI · GlucoModicum</span></div>
+  </div>
+</div>
+
+<section class="blk" id="explore">
+  <div class="shell">
+    <div class="blk-head">
+      <div><h2>What this hill works on</h2>
+      <p class="intro">Seven themes, one graph. Start from a question, land on a group — its people, its recent work, and a button to ask for an introduction.</p></div>
+      <a class="see" href="group.html">ALL 129 GROUPS → (SAMPLE GROUP PAGE)</a>
+    </div>
+    <div class="themes">
+      <div class="theme"><div class="t">Math &amp; Inversion <span class="c">47 core · 109 mapped</span></div><div class="barrow"><i style="width:100%"></i></div><div class="d">The mathematics that turns indirect measurements into images, models and certainty — the quiet backbone of the whole hill.</div></div>
+      <div class="theme"><div class="t">Atmosphere &amp; Climate <span class="c">41 core · 68 mapped</span></div><div class="barrow"><i style="width:87%"></i></div><div class="d">INAR and FMI side by side — aerosols, greenhouse gases and the measurement stations behind the numbers.</div></div>
+      <div class="theme"><div class="t">Artificial Intelligence <span class="c">29 core · 86 mapped</span></div><div class="barrow"><i style="width:62%"></i></div><div class="d">Machine learning, data science and AI methods — from foundations to atmospheric and materials applications.</div></div>
+      <div class="theme"><div class="t">Resilience &amp; Security <span class="c">24 core · 67 mapped</span></div><div class="barrow"><i style="width:51%"></i></div><div class="d">Geosciences, cyber security and urban systems — the science of coping with a changing planet.</div></div>
+      <div class="theme"><div class="t">New Materials <span class="c">14 core · 33 mapped</span></div><div class="barrow"><i style="width:30%"></i></div><div class="d">Synthesis, characterization and advanced instrumentation, from thin films to accelerator physics.</div></div>
+      <div class="theme"><div class="t">Quantum Science <span class="c">7 core · 37 mapped</span></div><div class="barrow"><i style="width:15%"></i></div><div class="d">Quantum matter, computing and sensing — theory to cryostat.</div></div>
+      <div class="theme"><div class="t">Near-Earth Space <span class="c">2 core · 9 mapped</span></div><div class="barrow"><i style="width:6%"></i></div><div class="d">Space physics and the Vlasiator simulation — modelling the plasma environment of Earth.</div></div>
+    </div>
+    <p class="themenote">Real counts from Kumpula Innovation Dashboard v8: "core" = the theme is central to the group's work; a group can map to several themes.</p>
+  </div>
+</section>
+
+<section class="blk" id="partner">
+  <div class="shell">
+    <div class="blk-head"><h2>Four ways in</h2></div>
+    <div class="facesgrid">
+      <div class="face"><span class="k">Explore</span><h3>Search the campus</h3><p>The living map: every group, spinout and facility, with the evidence behind each — updated as the science moves.</p><a class="go" href="#explore">→ OPEN THE MAP</a></div>
+      <div class="face"><span class="k">Partner</span><h3>Work with us</h3><p>Routes for corporations, scale-ups and startups: labs, instruments, joint projects — and a named person to talk to.</p><a class="go" href="partner.html">→ TALK TO THE INNO TEAM</a></div>
+      <div class="face" id="join"><span class="k">Join</span><h3>Come to Kumpula</h3><p>Groups that are hiring, study paths into the hill, and what living in Helsinki is actually like.</p><a class="go" href="#explore">→ FIND YOUR GROUP</a></div>
+      <div class="face" id="community"><span class="k">Community</span><h3>The hill itself</h3><p>Events, people, heritage — and the partnership with the City of Helsinki and FMI that makes the cluster more than a campus.</p><a class="go" href="#community">→ WHAT'S ON</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <div class="blk-head"><h2>Proof, not promises</h2><a class="see" href="#">ALL CASE FILES →</a></div>
+    <div class="split">
+      <div class="case">
+        <span class="k">Case file 01 · Materials &amp; instrumentation</span>
+        <h3>A testing startup, built on campus instruments</h3>
+        <p>Measurlabs grew from the Kumpula ecosystem into a materials-testing company serving customers worldwide — routing industrial questions to academic instruments and the people who run them. This is what the hill's capability looks like as a business.</p>
+        <div class="facts">
+          <div><b>2017<sup>◦</sup></b>Founded</div>
+          <div><b>2,000+<sup>◦</sup></b>Test methods</div>
+          <div><b>40+<sup>◦</sup></b>Countries served</div>
+        </div>
+      </div>
+      <div class="promise">
+        <span class="k">The promise</span>
+        <h3>A named person replies within two working days.</h3>
+        <p>Not a form into the void. Every inquiry lands with the Kumpula Inno Team — five people whose job is connecting this campus to the world.</p>
+        <div class="row"><input type="text" placeholder="What do you want to ask?" aria-label="Your question"><a style="display:flex;align-items:center;background:var(--amber);color:#fff;font:500 13px 'IBM Plex Sans';padding:10px 16px;border-radius:6px;text-decoration:none;white-space:nowrap" href="mailto:kumpula-inno@helsinki.fi?subject=Ask%20Kumpula">Ask Kumpula</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="shell">
+    <div class="blk-head"><h2>The Kumpula Files</h2><a class="see" href="#">ALL FILES →</a></div>
+    <div class="files">
+      <div class="file"><span class="k">File · 1991</span><h3>The kernel</h3><p>Linux was born in the University of Helsinki's computer science department — the department that now lives on this hill. The open-source world runs on Kumpula lineage.</p></div>
+      <div class="file"><span class="k">File · Near space</span><h3>Vlasiator</h3><p>The world's most accurate global simulation of Earth's plasma environment, built here — physics at a scale only a handful of machines can run.</p></div>
+      <div class="file"><span class="k">File · Next door</span><h3>The weather machine</h3><p>The Finnish Meteorological Institute shares the hill — forecasts, climate records and supercomputing, three hundred meters from the lecture halls.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell footin">
+    <div class="col brand">
+      <div class="m1">Kumpula</div>
+      <div class="m2">A University of Helsinki campus</div>
+      <p>Built with the City of Helsinki and the Finnish Meteorological Institute. Every figure on this site is rendered from the Kumpula Graph and carries its date.</p>
+    </div>
+    <div class="col"><div class="h">Site</div><a href="#explore">Explore</a><a href="partner.html">Partner</a><a href="#join">Join</a><a href="#community">Community</a></div>
+    <div class="col"><div class="h">Campus</div><a href="https://www.helsinki.fi/en">University of Helsinki</a><a href="https://www.helsinki.fi/en/faculty-science">Faculty of Science</a><a href="https://en.ilmatieteenlaitos.fi/">FMI</a><a href="https://www.hel.fi/en/business-and-work/kumpula-innovation-cluster">City of Helsinki</a></div>
+    <div class="col"><div class="h">Data</div><a href="https://finnwill63.github.io/kumpula-innovation-dashboard/">The Kumpula Graph (dashboard)</a><a href="https://github.com/finnwill63/kumpula-innovation-dashboard">Open data &amp; API</a><a href="#">Method notes (V4)</a></div>
+  </div>
+</footer>
+
+<script>
+// timestamp for the proof strip
+try{
+  var d=new Date();
+  document.getElementById('stamp').textContent=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' 06:00';
+}catch(e){}
+
+// rotating search placeholder
+(function(){
+  var qs=["Who works on atmospheric aerosols?","Who can characterize my material?","Which groups use machine learning?","Who models space weather?","Who is hiring doctoral researchers?"];
+  var el=document.getElementById('q'), i=0;
+  if(!el) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  setInterval(function(){ if(document.activeElement===el||el.value) return; i=(i+1)%qs.length; el.placeholder=qs[i]; },3500);
+})();
+
+// hero field: quiet contour/particle drift, drawn once (static frame), evoking measurement
+(function(){
+  var cv=document.getElementById('field'); if(!cv) return;
+  var ctx=cv.getContext('2d');
+  function draw(){
+    var w=cv.clientWidth, h=cv.clientHeight, r=window.devicePixelRatio||1;
+    cv.width=w*r; cv.height=h*r; ctx.setTransform(r,0,0,r,0,0);
+    ctx.clearRect(0,0,w,h);
+    // dotted field
+    for(var y=14;y<h;y+=26){
+      for(var x=14;x<w;x+=26){
+        var v=Math.sin(x*0.012)+Math.cos(y*0.017)+Math.sin((x+y)*0.006);
+        var a=0.05+0.06*(v+3)/6;
+        ctx.fillStyle='rgba(127,180,226,'+a.toFixed(3)+')';
+        ctx.beginPath(); ctx.arc(x+6*Math.sin(y*0.05), y, 1.1, 0, 6.283); ctx.fill();
+      }
+    }
+    // streamlines
+    ctx.strokeStyle='rgba(127,180,226,0.16)'; ctx.lineWidth=1;
+    for(var s=0;s<5;s++){
+      ctx.beginPath();
+      var yy=h*0.15+s*h*0.18;
+      ctx.moveTo(-10,yy);
+      for(var xx=0;xx<=w+10;xx+=12){
+        ctx.lineTo(xx, yy+18*Math.sin(xx*0.008+s*1.7)+10*Math.sin(xx*0.021+s));
+      }
+      ctx.stroke();
+    }
+  }
+  draw();
+  var t; window.addEventListener('resize',function(){clearTimeout(t); t=setTimeout(draw,150);});
+})();
+</script>
+<script id="kumpula-graph" type="application/json">[{"id": 1, "group": "Radioecology", "dept": "Chemistry", "focus": "Isotopic ratios and radiometric age dating.", "pi": "Dr. Jukka Lehto (Professor Emeritus / Senior Advisor) and Prof. Gareth Law (Professor of Radiochemistry).", "themes": {"Atmosphere & Climate": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 2, "group": "VERIFIN", "dept": "Chemistry", "focus": "Chemical forensics and support for chemical disarmament.", "pi": "Prof. Hanna Hakulinen (Director) [Hanna Hakulinen appointed director].", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 1, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 3, "group": "Reaction Kinetics", "dept": "Chemistry", "focus": "Experimental and simulated atmospheric/combustion chemistry.", "pi": "Dr. Arkke Eskola (University Researcher / Group Leader).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 4, "group": "Trace Gas Analysis", "dept": "Chemistry", "focus": "Volatile species detection in breath and microbial headspace.", "pi": "Dr. Markus Metsälä (University Lecturer and Director of the B.Sc. programme in Chemistry).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 5, "group": "Radionuclide Reaction and Fate", "dept": "Chemistry", "focus": "Environmental radioactivity and nuclear site management.", "pi": "Prof. Gareth Law (Professor of Radiochemistry).", "themes": {"Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 6, "group": "Tracers in Molecular Imaging", "dept": "Chemistry", "focus": "Radiotracers for PET and SPECT (oncology/neurology).", "pi": "Prof. Anu Airaksinen (Professor of Radiopharmaceutical Chemistry).", "themes": {"Quantum Science": 1, "New Materials": 1, "Math & Inversion": 1}}, {"id": 7, "group": "SECO", "dept": "Chemistry", "focus": "Sustainability-focused chemistry education.", "pi": "Prof. Maija Aksela (Professor of Chemistry Education).", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 1, "New Materials": 1}}, {"id": 8, "group": "Environmental Analytical Chemistry", "dept": "Chemistry", "focus": "Sampling and detection of environmental samples.", "pi": "Prof. Kari Hartonen (University Researcher / Group Leader).", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "New Materials": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 9, "group": "Biomolecular Chemistry", "dept": "Chemistry", "focus": "Interface of chemistry, medicine, and biology.", "pi": "Assoc. Prof. Filip Ekholm.", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 1, "Math & Inversion": 1}}, {"id": 10, "group": "Molecular-Level Atmospheric Science", "dept": "Chemistry", "focus": "Molecule–climate integration and aerosol formation.", "pi": "Assoc. Prof. Nanna Myllys (Associate Professor of Molecular Atmospheric Science).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 2, "Atmosphere & Climate": 2, "New Materials": 1, "Math & Inversion": 2}}, {"id": 11, "group": "Laser Spectroscopy", "dept": "Chemistry", "focus": "Sensitive molecular spectroscopy and air pollution.", "pi": "Prof. Markku Vainio.", "themes": {"Artificial Intelligence": 1, "Quantum Science": 2, "Atmosphere & Climate": 2, "New Materials": 1, "Math & Inversion": 2, "Near-Earth Space": 1, "Resilience & Security": 1}}, {"id": 12, "group": "Atmospheric Computational Chemistry", "dept": "Chemistry", "focus": "Gas-phase accretion and organic radicals.", "pi": "Prof. Theo Kurtén (Professor of Computational Chemistry).", "themes": {"Artificial Intelligence": 2, "Quantum Science": 2, "Atmosphere & Climate": 2, "New Materials": 1, "Math & Inversion": 2}}, {"id": 13, "group": "Nuclear Waste Disposal", "dept": "Chemistry", "focus": "Safety analysis parameters for final disposal.", "pi": "Prof. Gareth Law (Professor of Radiochemistry).", "themes": {"New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 14, "group": "Polymers and Colloids", "dept": "Chemistry", "focus": "Environment-responsive polymer structures.", "pi": "Prof. Heikki Tenhu (Professor of Polymer Chemistry).", "themes": {"Artificial Intelligence": 1, "New Materials": 2, "Math & Inversion": 1}}, {"id": 15, "group": "Chemistry of Circular Economy", "dept": "Chemistry", "focus": "Waste-to-commodity conversion technologies.", "pi": "Assistant Professor Timo Leskinen.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 1, "New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 16, "group": "Synthesis and Catalysis", "dept": "Chemistry", "focus": "Sustainable production and organo-photoredox catalysis.", "pi": "Prof. Juho Helaja.", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 1}}, {"id": 17, "group": "Chemical Crystallography", "dept": "Chemistry", "focus": "Structural chemistry and single-crystal X-ray analysis.", "pi": "Prof. Piero Macchi", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 2}}, {"id": 18, "group": "Nanomaterials for Plasmonics", "dept": "Chemistry", "focus": "Sustainability via catalysis and nanomaterials.", "pi": "Prof. Pedro Camargo (Professor of Inorganic Chemistry).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 19, "group": "Catalysis and Green Chemistry", "dept": "Chemistry", "focus": "Small-molecule activation (H₂, CO₂, O₂, H₂O).", "pi": "Prof. Timo Repo.", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 1, "New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 20, "group": "HelsinkiALD", "dept": "Chemistry", "focus": "Atomic Layer Deposition (ALD) and thin-film preparation.", "pi": "Prof. Mikko Ritala (Group Leader) and Prof. Markku Leskelä.", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 1, "Near-Earth Space": 1, "Resilience & Security": 2}}, {"id": 21, "group": "Algorithms for biological sequencing data", "dept": "Computer Science", "focus": "Genome assembly, de Bruijn graphs, and read mapping for high-throughput sequencing.", "pi": "Leena Salmela, University Lecturer & Academy Research Fellow", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 22, "group": "Genome-scale algorithmics", "dept": "Computer Science", "focus": "Pangenomics, variation graphs, and structural variation detection at scale.", "pi": "Professor Veli Mäkinen", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 23, "group": "Bioinformatics and Evolution Research", "dept": "Computer Science", "focus": "Phylogenetics, population genomics, and computational models of biological evolution.", "pi": "Professor Ville Mustonen", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 24, "group": "Content-Based Retrieval and Analysis of Harmony", "dept": "Computer Science", "focus": "Music informatics, melodic similarity, and computational musicology.", "pi": "Dr. Kjell Lemström, Senior University Lecturer & Adjunct Professor", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 25, "group": "Compressed data structures", "dept": "Computer Science", "focus": "Succinct representations of big data, FM-indexes, and efficient string matching.", "pi": "Professor Simon J. Puglisi", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 26, "group": "Practical algorithms and data structures on strings", "dept": "Computer Science", "focus": "String matching, suffix trees/arrays, and text indexing for massive datasets.", "pi": "Juha Kärkkäinen, University Lecturer", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 27, "group": "Graph algorithms", "dept": "Computer Science", "focus": "Combinatorial optimization, network flow, and theoretical analysis of complex graphs.", "pi": "Professor Alexandru Tomescu", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 28, "group": "Sums of Products", "dept": "Computer Science", "focus": "Exact inference in probabilistic models, Bayesian networks, and structure learning.", "pi": "Professor Mikko Koivisto", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "Math & Inversion": 2}}, {"id": 29, "group": "Algorithmic Data Science", "dept": "Computer Science", "focus": "Mining large networks, event sequence analysis, and real-time stream processing.", "pi": "Associate Professor Michael Mathioudakis", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 30, "group": "Constraint Reasoning and Optimization", "dept": "Computer Science", "focus": "Boolean satisfiability (SAT), Answer Set Programming (ASP), and discrete optimization.", "pi": "Professor Matti Järvisalo", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 31, "group": "Data Analytics and Cyber Security", "dept": "Computer Science", "focus": "Anomaly detection in networks, privacy-preserving mining, and threat intelligence.", "pi": "Professor Nikolaj Tatti", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 32, "group": "Computational Data Analysis", "dept": "Computer Science", "focus": "Concept drift in machine learning, macroevolutionary patterns, and paleoecology.", "pi": "Professor Indrė Žliobaitė", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 2}}, {"id": 33, "group": "Exploratory Data Analysis", "dept": "Computer Science", "focus": "Interactive data mining, user-guided visualization, and human-in-the-loop analytics.", "pi": "Professor Kai Puolamäki", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 2}}, {"id": 34, "group": "Cognitive Computing", "dept": "Computer Science", "focus": "Brain-computer interfaces, gaze-contingent systems, and cognitive search models.", "pi": "Professor Tuukka Ruotsalo (Associate Professor at UH, Copenhagen, and LUT)", "themes": {"Artificial Intelligence": 2}}, {"id": 35, "group": "Exploratory Search and Personalization", "dept": "Computer Science", "focus": "Recommender systems, adaptive interfaces, and interactive information retrieval.", "pi": "Professor Hannu Toivonen (Francqui International Professor 2025)", "themes": {"Artificial Intelligence": 2}}, {"id": 36, "group": "Computational Creativity and Data Mining", "dept": "Computer Science", "focus": "Generative art/language models, concept discovery, and automated metaphor generation.", "pi": "Professor Hannu Toivonen (Francqui International Professor 2025)", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 1}}, {"id": 37, "group": "Neuroinformatics", "dept": "Computer Science", "focus": "Independent Component Analysis (ICA), EEG/fMRI signal processing, and neural modeling.", "pi": "Professor Aapo Hyvärinen (Fellow of ELLIS)", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 1}}, {"id": 38, "group": "Complex Systems Computation (CoSCo)", "dept": "Computer Science", "focus": "Bayesian modeling, social network dynamics, and stochastic process simulation.", "pi": "Professor Petri Myllymäki & Professor Teemu Roos", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 2}}, {"id": 39, "group": "Machine and Human Intelligence", "dept": "Computer Science", "focus": "Bayesian inference, active learning, and modeling human decision-making processes.", "pi": "Associate Professor Luigi Acerbi", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 40, "group": "Spatiotemporal Data Analysis", "dept": "Computer Science", "focus": "Mobility modeling, autonomous navigation, and trajectory mining from sensor data.", "pi": "Professor Laura Ruotsalainen", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "Math & Inversion": 1, "Near-Earth Space": 1, "Resilience & Security": 1}}, {"id": 41, "group": "Trustworthy Machine Learning", "dept": "Computer Science", "focus": "Differential privacy, robust AI, and quantification of model uncertainty.", "pi": "Professor Antti Honkela (Coordinating Professor of FCAI Program 4)", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 42, "group": "Multi-Source Probabilistic Inference", "dept": "Computer Science", "focus": "Data fusion, multi-view learning, and kernel methods for heterogeneous data.", "pi": "Associate Professor Arto Klami", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 2}}, {"id": 43, "group": "Collaborative and Interoperable Computing", "dept": "Computer Science", "focus": "Service-oriented architectures, B2B interoperability, and automated e-contracting.", "pi": "Dr. Lea Kutvonen, Senior University Lecturer & Docent", "themes": {"Resilience & Security": 2}}, {"id": 44, "group": "Collaborative Networking", "dept": "Computer Science", "focus": "Edge/cloud computing, opportunistic mobile networks, and IoT protocol design.", "pi": "Professor Jussi Kangasharju (Head of the Department)", "themes": {"Resilience & Security": 2}}, {"id": 45, "group": "Wireless Internet", "dept": "Computer Science", "focus": "TCP/IP optimization, 5G/6G protocols, and energy-efficient wireless systems.", "pi": "Markku Kojo, Senior University Lecturer & Docent", "themes": {"Resilience & Security": 2}}, {"id": 46, "group": "Systems and Media", "dept": "Computer Science", "focus": "Mobile media delivery, ubiquitous systems, and human-centric networking.", "pi": "Professor Pan Hui (Nokia Chair Professor in Data Science)", "themes": {"Artificial Intelligence": 1, "Resilience & Security": 1}}, {"id": 47, "group": "Content-Centric Structures and Networking", "dept": "Computer Science", "focus": "Information-Centric Networking (ICN), named data networking, and caching strategies.", "pi": "Professor Sasu Tarkoma (Vice-Dean of the Faculty of Science)", "themes": {"Artificial Intelligence": 1, "Resilience & Security": 2}}, {"id": 48, "group": "Parallel and Distributed Computing", "dept": "Computer Science", "focus": "Formal verification, model checking of concurrent systems, and HPC scalability.", "pi": "Professor Keijo Heljanko, Deputy Director of HiData", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 1, "Resilience & Security": 2}}, {"id": 49, "group": "Secure Systems", "dept": "Computer Science", "focus": "Cryptographic protocols, trusted execution (TEEs), and cloud security.", "pi": "Professor Valtteri Niemi", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 50, "group": "Pervasive Data Science", "dept": "Computer Science", "focus": "Mobile sensing, context-aware computing, and IoT-driven data science.", "pi": "Professor Petteri Nurmi", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "Resilience & Security": 1}}, {"id": 51, "group": "Intelligent Environmental Monitoring and Analytics", "dept": "Computer Science", "focus": "IoT sensor networks, environmental data analytics, and pervasive sensing.", "pi": "Dr. Martha Arbayani Zaidan, Academy Research Fellow & Docent", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 52, "group": "Agile Education Research", "dept": "Computer Science", "focus": "Learning analytics, automated grading, and evidence-based pedagogy in CS.", "pi": "Dr. Matti Luukkainen, Senior University Lecturer & Teachers' Academy Member", "themes": {}}, {"id": 53, "group": "Ubiquitous Interaction", "dept": "Computer Science", "focus": "Mixed reality (AR/VR), multimodal interfaces, and wearable computing.", "pi": "Professor Giulio Jacucci", "themes": {"Artificial Intelligence": 1}}, {"id": 54, "group": "Empirical Software Engineering", "dept": "Computer Science", "focus": "Technical debt, software testing automation, and industrial dev-ops research.", "pi": "Prof. Tomi Männistö, Prof. Mika Mäntylä, and Prof. Jukka K. Nurminen", "themes": {"Artificial Intelligence": 1, "Resilience & Security": 1}}, {"id": 55, "group": "Unified Database Management Systems", "dept": "Computer Science", "focus": "Multi-model databases, SQL-NoSQL integration, and query optimization.", "pi": "Professor Jiaheng Lu", "themes": {"Artificial Intelligence": 1, "Resilience & Security": 1}}, {"id": 56, "group": "Long Terrestrial Archives", "dept": "Geography and Geosciences", "focus": "Cenozoic climate and environmental changes through geological and palaeontological archives.", "pi": "Associate Professor Anu Kaakinen.", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 57, "group": "Spatial Policy, Politics and Planning", "dept": "Geography and Geosciences", "focus": "Examines how political and economic decisions transform geographical spaces and social practices.", "pi": "Professor Sami Moisio, Professor Pia Bäcklund, and Assistant Professor Noora Pyyry.", "themes": {"Atmosphere & Climate": 1, "Resilience & Security": 1}}, {"id": 58, "group": "Aquatic Community Ecology", "dept": "Geography and Geosciences", "focus": "Uses unicellular organisms to test ecological theories and support freshwater biodiversity conservation.", "pi": "Professor Janne Soininen.", "themes": {"Atmosphere & Climate": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 59, "group": "Geodynamics Group (HUGG)", "dept": "Geography and Geosciences", "focus": "Studies how Earth's outer rock layers deform and interact with climate and erosion.", "pi": "Professor David Whipp.", "themes": {"Atmosphere & Climate": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 60, "group": "Evolutionary Palaeontology", "dept": "Geography and Geosciences", "focus": "Vertebrate evolution and paleoecology, focusing on climate impacts on terrestrial mammals.", "pi": "Assistant Professor Juha Saarinen.", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "Math & Inversion": 1}}, {"id": 61, "group": "Hominin Ecology", "dept": "Geography and Geosciences", "focus": "Human-environment interactions from the Early Pleistocene to modern hunter-gatherers.", "pi": "Assistant Professor Miikka Tallavaara.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 1, "Math & Inversion": 1}}, {"id": 62, "group": "Palaeoclimatology and Palaeoecology", "dept": "Geography and Geosciences", "focus": "Long-term climate change and associated ecological responses, including ice age dynamics.", "pi": "Professor Heikki Seppä.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 63, "group": "EvoDevo Group", "dept": "Geography and Geosciences", "focus": "Studies mammalian tooth evolution and development using 3D analysis and computational modeling.", "pi": "Academy Professor Jukka Jernvall.", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 64, "group": "Terrestrial Ecosystem Dynamics (Tree-D Lab)", "dept": "Geography and Geosciences", "focus": "Basic and applied research on how ecosystems (Boreal to Tropical) respond to global changes.", "pi": "Associate Professor Eduardo Maeda.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 65, "group": "Lab of Interdisciplinary Conservation Science (HELICS)", "dept": "Geography and Geosciences", "focus": "Interdisciplinary team focused on human-nature interactions to inform conservation policy.", "pi": "Professor Enrico Di Minin.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 66, "group": "Dynamics of Urban Change and Segregation", "dept": "Geography and Geosciences", "focus": "Explores urban inequality, segregation processes, and the factors behind successful cities.", "pi": "Professor Mari Vaattovaara.", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 67, "group": "Dynamic Systems Seismology", "dept": "Geography and Geosciences", "focus": "Analyzes seismic signals using array techniques to monitor dynamic Earth systems.", "pi": "Professor Gregor Hillers.", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 2, "Resilience & Security": 2}}, {"id": 68, "group": "BioGeoClimate Modelling Lab", "dept": "Geography and Geosciences", "focus": "Spatial and temporal modeling of Earth systems, biogeography, and climatology using GIS.", "pi": "Professor Miska Luoto.", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 2, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 69, "group": "Earth Change Observation Laboratory (ECHOLAB)", "dept": "Geography and Geosciences", "focus": "Studying Earth's physical and societal systems through remote sensing and geospatial data.", "pi": "Professor Petri Pellikka.", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 70, "group": "Digital Geography Lab", "dept": "Geography and Geosciences", "focus": "Explores human mobility and biodiversity conservation using big data and modeling.", "pi": "Professor Tuuli Toivonen.", "themes": {"Artificial Intelligence": 2, "Atmosphere & Climate": 1, "Math & Inversion": 2, "Resilience & Security": 2}}, {"id": 71, "group": "Environmental Geochemistry", "dept": "Geography and Geosciences", "focus": "Focuses on element cycles in the Earth's surface system and biosphere.", "pi": "Professor Tom Jilbert.", "themes": {"Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 72, "group": "Sustainable Earth Resources", "dept": "Geography and Geosciences", "focus": "Researches groundwater and bedrock gases to support geoenergy and nuclear waste disposal.", "pi": "Assistant Professor Riikka Kietäväinen.", "themes": {"New Materials": 1, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 73, "group": "Paleomagnetism and Solid Earth Geophysics", "dept": "Geography and Geosciences", "focus": "Investigates plate tectonics, supercontinent cycles, and magnetic minerals.", "pi": "Associate Professor Johanna Salminen.", "themes": {"Quantum Science": 1, "New Materials": 1, "Math & Inversion": 2, "Near-Earth Space": 1, "Resilience & Security": 1}}, {"id": 74, "group": "Geochemistry and Petrology", "dept": "Geography and Geosciences", "focus": "Wide-ranging research into the composition and formation of the Earth's lithosphere.", "pi": "Professor Tapani Rämö and Professor Christoph Beier.", "themes": {"New Materials": 2, "Math & Inversion": 1}}, {"id": 75, "group": "Survival and Event History Analysis", "dept": "Math and Statistics", "focus": "Specializes in study designs for life event histories under various observation schemes.", "pi": "Prof. Sangita Kulathinal (Professor of Statistics, specializing in event history analysis).", "themes": {"Math & Inversion": 2}}, {"id": 76, "group": "Mathematical Risk Management", "dept": "Math and Statistics", "focus": "Employs mathematical and statistical techniques for finance and insurance modeling.", "pi": "Prof. Dario Gasbarra (specializing in stochastics and risk) and Prof. Teemu Pennanen (expert in mathematical finance).", "themes": {"Math & Inversion": 2, "Resilience & Security": 2}}, {"id": 77, "group": "Mathematics Education", "dept": "Math and Statistics", "focus": "Develops improved teaching methodologies for university-level mathematics.", "pi": "Prof. Johanna Rämö (Leading figure in university mathematics education and the \"Extreme Apprenticeship\" model).", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 78, "group": "Environmental and Ecological Statistics", "dept": "Math and Statistics", "focus": "Develops statistical methodologies specifically for ecology and environmental sciences.", "pi": "Prof. Jarno Vanhatalo (Group Leader, Professor of Statistics).", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 79, "group": "Statistical and Population Genetics", "dept": "Math and Statistics", "focus": "Researches computational methods for genomic data and population genetics in Finland.", "pi": "Prof. Matti Pirinen (Associate Professor of Statistics, focusing on genomic data analysis).", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 2}}, {"id": 80, "group": "Mathematical Logic", "dept": "Math and Statistics", "focus": "Studies finite and infinite structures using specialized logical methods and team semantics.", "pi": "Prof. Tapani Hyttinen and Prof. Jouko Väänänen (Emeritus).", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 81, "group": "Robust Statistics & Time Series", "dept": "Math and Statistics", "focus": "Focuses on estimation and diagnostic methods for regression and time series models.", "pi": "Prof. Pauliina Ilmonen (Expert in robust multivariate analysis and time series).", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 2, "Resilience & Security": 2}}, {"id": 82, "group": "Geometric Analysis", "dept": "Math and Statistics", "focus": "Focuses on analysis of functions, representations, and partial differential equations (PDEs).", "pi": "Prof. Pekka Pankka and Prof. Eero Saksman.", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 1, "Math & Inversion": 2}}, {"id": 83, "group": "Mathematical Physics", "dept": "Math and Statistics", "focus": "Applies pure mathematics to study physical phenomena and kinetic theory.", "pi": "Prof. Antti Kupiainen (noted for leading the group and as a key figure in international collaborations like the Simons Collaboration).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 2, "Math & Inversion": 2, "Near-Earth Space": 1}}, {"id": 84, "group": "Multivariate Statistical Methods", "dept": "Math and Statistics", "focus": "Focuses on modern methods for complex data types like spatial and tensor-valued observations.", "pi": "Prof. Pauliina Ilmonen (specializes in multivariate analysis and robust statistics).", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 2}}, {"id": 85, "group": "Probabilistic Inference Lab (PIL)", "dept": "Math and Statistics", "focus": "Specializes in AI, machine learning, and simulator-based inference.", "pi": "Prof. Arto Klami (Lead of PIL and Assistant Professor in Computer Science/Statistics).", "themes": {"Artificial Intelligence": 2, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 86, "group": "Probabilistic Methods", "dept": "Math and Statistics", "focus": "Addresses random geometry and probabilistic questions in analysis.", "pi": "Prof. Eero Saksman (identified as a primary lead in probabilistic methods and analysis).", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "Math & Inversion": 2}}, {"id": 87, "group": "Inverse Problems", "dept": "Math and Statistics", "focus": "Investigates techniques to determine unknown causes from predicted results.", "pi": "Prof. Matti Lassas (as Director of the related Centre of Excellence).", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "Atmosphere & Climate": 1, "New Materials": 1, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 88, "group": "Particle Cosmology", "dept": "Physics", "focus": "Focuses on the early universe, including dark matter models, dark energy, and high-density QCD matter.", "pi": "Prof. Aleksi Vuorinen and Prof. Kari Rummukainen (co-leads for related theoretical programs).", "themes": {"Quantum Science": 2, "Math & Inversion": 2}}, {"id": 89, "group": "Didactic Physics", "dept": "Physics", "focus": "Multidisciplinary field combining psychology, cognitive science, and philosophy to improve physics teaching and teacher education.", "pi": "Prof. Ismo Koponen (Professor of Physics Didactics).", "themes": {"Artificial Intelligence": 1, "Math & Inversion": 1}}, {"id": 90, "group": "Observational Cosmology", "dept": "Physics", "focus": "Involved in ESA missions such as Planck (past) and preparations for the Euclid mission (future).", "pi": "Prof. Hannu Kurki-Suonio (Professor of Cosmology and leader of Finnish participation in the Euclid mission).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Math & Inversion": 2}}, {"id": 91, "group": "Astrophysics", "dept": "Physics", "focus": "Researches interstellar matter, star formation, stellar magnetic activity, galaxy evolution, and planetary science.", "pi": "Prof. Peter Johansson (Theoretical Extragalactic Research), Assoc. Prof. Joonas Nättilä (Plasma Astrophysics), Prof. Alexis Finoguenov (Observational Extragalactic), and Dr. Mika Juvela (Interstellar Matter).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 1, "Math & Inversion": 2, "Near-Earth Space": 2, "Resilience & Security": 1}}, {"id": 92, "group": "Space Physics", "dept": "Physics", "focus": "Studies Sun–Earth physics and space weather using numerical simulations of the Sun’s corona and Earth’s magnetosphere.", "pi": "Prof. Minna Palmroth (Professor of Computational Space Physics and Academy Professor 2026–2031).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2, "Near-Earth Space": 2, "Resilience & Security": 2}}, {"id": 93, "group": "Detector Laboratory", "dept": "Physics", "focus": "Develops and builds advanced detectors for particle physics, including technology for the proposed CLIC linear collider.", "pi": "Dr. Francisco García (Laboratory Manager/Lead).", "themes": {"Quantum Science": 1, "New Materials": 1, "Math & Inversion": 1, "Near-Earth Space": 1, "Resilience & Security": 2}}, {"id": 94, "group": "Theoretical Particle Physics", "dept": "Physics", "focus": "Investigates quantum field and thread theories, focusing on both theoretical structures and particle phenomena.", "pi": "Prof. Aleksi Vuorinen (Lead for QCD Matter and HIP Theory Programme Director) and Prof. Kari Rummukainen (Theoretical Cosmology/Lattice QCD).", "themes": {"Quantum Science": 2, "New Materials": 1, "Math & Inversion": 2}}, {"id": 95, "group": "Medical Physics", "dept": "Physics", "focus": "Applied physics aimed at improving medical diagnostics, treatment tools, and clinical information.", "pi": "Prof. Simo-Pekka Simonen (Professor of Medical Physics).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 1, "Math & Inversion": 2}}, {"id": 96, "group": "Electronics Research Laboratory", "dept": "Physics", "focus": "Focuses on developing electronic and computerized measurement techniques, particularly for industrial applications.", "pi": "Prof. Edward Hæggström and Prof. Ari Salmi (Acting Head) [The Working Life Act of the year 2023].", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 97, "group": "Experimental Particle Physics", "dept": "Physics", "focus": "Participates in global experiments like CMS and TOTEM at CERN's Large Hadron Collider.", "pi": "Not explicitly listed in the primary source; however, these activities are managed in close coordination with the Helsinki Institute of Physics (HIP).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 2, "New Materials": 1, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 98, "group": "Helsinki Accelerator Laboratory", "dept": "Physics", "focus": "Studies materials physics and utilizes accelerators for environmental research and radiocarbon dating.", "pi": "Prof. Filip Tuomisto (Head of Laboratory) [Contact", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 1, "New Materials": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 99, "group": "X-ray Laboratory", "dept": "Physics", "focus": "Specializes in non-destructive imaging and analysis from the atomic to macroscopic scale using synchrotrons and X-ray free-electron lasers.", "pi": "Prof. Simo Huotari (Head of Laboratory).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 100, "group": "Biological and Soft Matter Physics", "dept": "Physics", "focus": "Focuses on the theory and computational modeling of soft and dense matter.", "pi": "Prof. Ilpo Vattulainen (Biological Physics) and Prof. Tapio Ala-Nissilä (Soft Matter) [Source: University of Helsinki Research Portal].", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "New Materials": 2, "Math & Inversion": 1}}, {"id": 101, "group": "Materials Physics Simulations", "dept": "Physics", "focus": "Analyzes the behavior of ions, electrons, neutrons, and plasma through irradiation studies.", "pi": "Prof. Kai Nordlund (Vice Rector and Professor of Computational Materials Physics) and Prof. Flyura Djurabekova (Head of the Division of Materials Physics).", "themes": {"Artificial Intelligence": 2, "Quantum Science": 1, "Atmosphere & Climate": 1, "New Materials": 2, "Math & Inversion": 2, "Near-Earth Space": 1, "Resilience & Security": 1}}, {"id": 102, "group": "Air Quality (AQ) Research Group", "dept": "INAR", "focus": "Focuses on addressing the deterioration of air quality due to rapid urbanization and industrialization, aiming to mitigate health impacts and environmental productivity loss.", "pi": "Associate Professor Pauli Paasonen (Group Leader) and Professor Tareq Hussein.", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 103, "group": "Atmospheric Aerosols Research Group", "dept": "INAR", "focus": "Studies the physical properties of aerosol particles and the processes that modify their population in various environments to reduce uncertainties in climate and health impacts.", "pi": "Professor Katrianne Lehtipalo (Group Leader).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 104, "group": "Atmospheric Physical Chemistry", "dept": "INAR", "focus": "Focuses on a fundamental physical and chemical understanding of the atmospheric transformation of volatile organic emissions into condensable vapors and organic particulate matter.", "pi": "Professor Mikael Ehn (Group Leader).", "themes": {"Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 105, "group": "Computational Aerosol Physics", "dept": "INAR", "focus": "Focuses on using multi-scale computational methods to understand the molecular-level processes governing the formation and properties of atmospheric aerosols.", "pi": "Professor Hanna Vehkamäki (Group Leader).", "themes": {"Artificial Intelligence": 1, "Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 106, "group": "Dynamic Meteorology", "dept": "INAR", "focus": "The branch of fluid dynamics concerned with the meteorologically significant motions of the atmosphere, forming the primary scientific basis for weather and climate prediction.", "pi": "Professor Heikki Järvinen", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 107, "group": "Ecosystem Processes", "dept": "INAR", "focus": "Focuses on increasing the fundamental understanding of physical and chemical land surface processes and the coupling between the atmosphere, biosphere, and hydrosphere across different ecosystems.", "pi": "Professor Jaana Bäck (Group Leader).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 108, "group": "Forest Modelling", "dept": "INAR", "focus": "Focuses on the development and application of mathematical models to understand the structure, function, and dynamics of forest ecosystems, particularly in the context of a changing climate.", "pi": "Professor Annikki Mäkelä", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 109, "group": "Micrometeorology and Greenhouse Gases", "dept": "INAR", "focus": "Focuses on the exchange of momentum, energy, and trace gases between the Earth's surface and the atmospheric boundary layer (the lowest 10–2000 meters of the atmosphere).", "pi": "Professor Timo Vesala", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 110, "group": "Atmospheric Interactions", "dept": "INAR", "focus": "Focuses on the intricately-linked processes and feedbacks between the atmosphere and other Earth system components, including the biosphere, hydrosphere, and urban areas.", "pi": "Professor Tuukka Petäjä (listed as the primary lead for observation-based atmospheric interactions).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 111, "group": "Multi-Scale Modelling Group", "dept": "INAR", "focus": "Focuses on developing and utilizing advanced modeling tools that scale from molecular-level quantum chemistry to global Earth System models to understand atmospheric processes.", "pi": "Professor Michael Boy (Group Leader).", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 112, "group": "Polar and Arctic Atmospheric Research", "dept": "INAR", "focus": "Focuses on the unique atmospheric processes of the Polar regions, which are warming at significantly higher rates than the global average, to understand Arctic amplification and aerosol-cloud-climate feedbacks.", "pi": "Professor Tuukka Petäjä and Assistant Professor Mikko Sipilä.", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 113, "group": "Pan-Eurasian Experiment (PEEX)", "dept": "INAR", "focus": "A multi-disciplinary, multi-scale research initiative focused on solving global challenges—including climate change and air quality—across the Pan-Eurasian and Chinese regions.", "pi": "Academician Markku Kulmala (Program Director) and Dr. Hanna Lappalainen (Secretary General).", "themes": {"Atmosphere & Climate": 2, "Resilience & Security": 1}}, {"id": 114, "group": "Radar Meteorology", "dept": "INAR", "focus": "Focuses on cloud and precipitation physics, utilizing remote sensing observations to capture the microphysical processes that govern the properties of rain and snowfall.", "pi": "Professor Dmitri Moisseev (Director of Radar Meteorology)", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 115, "group": "Soil Dynamics", "dept": "INAR", "focus": "Focuses on the physical, chemical, and biological processes within the soil that regulate the exchange of gases and energy between the terrestrial surface and the atmosphere.", "pi": "Professor Mari Pihlatie (Group Leader).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 116, "group": "Urban Meteorology", "dept": "INAR", "focus": "Focuses on the coupling between the urban ecosystem and the atmosphere, investigating urban climate, air pollution, and greenhouse gas (GHG) cycles to support city sustainability and climate neutrality goals.", "pi": "Professor Leena Järvi", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 117, "group": "Urban and Indoor Aerosols Exposure", "dept": "INAR", "focus": "Studies the concentrations, sources, and personal exposure to aerosol particles in urban and indoor environments to understand their health impacts.", "pi": "Professor Tareq Hussein", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Resilience & Security": 2}}, {"id": 118, "group": "Earth Change Observation Laboratory (ECHOLAB)", "dept": "INAR", "focus": "Specializes in the use of advanced remote sensing and geoinformatics to observe and quantify changes in the Earth’s surface processes across various ecosystems.", "pi": "Professor Petri Pellikka (Group Leader).", "themes": {"Artificial Intelligence": 1, "Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 1}}, {"id": 119, "group": "Atmospheric Aerosols", "dept": "INAR", "focus": "Studies how atmospheric aerosols form and their critical role in the Earth's climate through interactions with clouds, radiation, and associated feedback mechanisms.", "pi": "Professor Katrianne Lehtipalo (Group Leader)", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 120, "group": "Boreal Trees (Ecosystem Processes)", "dept": "INAR", "focus": "Focuses on how boreal forest ecosystems act as sources or sinks for trace gases and biogenic volatile organic compounds, and how these processes interact with the atmosphere to influence climate.", "pi": "Professor Jaana Bäck (Lead for Biosphere-Atmosphere interactions).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 121, "group": "IRON (Integrated Research on Oxygen and Nitrogen) Group", "dept": "INAR", "focus": "Focuses on the biogeochemical cycles of nitrogen and oxygen, particularly their roles in greenhouse gas emissions (N₂O) and ecosystem-atmosphere interactions.", "pi": "Professor Mari Pihlatie", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 122, "group": "Atmospheric Interactions (InterAct) Group", "dept": "INAR", "focus": "Investigates the physical and chemical processes leading to new particle formation (NPF) and their climate impacts, with a specific focus on pristine and extreme environments.", "pi": "Associate Professor Federico Bianchi and Associate Professor Monica Passananti.", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 123, "group": "Global Atmosphere-Earth Surface Feedbacks (GAEA)", "dept": "INAR", "focus": "Studies the physical and chemical processes, interactions, and feedbacks within the global climate system, with a focus on aerosol-cloud-radiation-surface interactions.", "pi": "Professor Veli-Matti Kerminen and Dr. Ekaterina Ezhova (University Lecturer/Docent).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1}}, {"id": 124, "group": "Atmospheric Computational Chemistry", "dept": "INAR", "focus": "Employs high-level quantum chemical methods and reaction kinetics to study the transformation of atmospheric vapors into particles, providing a molecular-level foundation for atmospheric models.", "pi": "Professor Theo Kurtén.", "themes": {"Quantum Science": 1, "Atmosphere & Climate": 2, "Math & Inversion": 2}}, {"id": 125, "group": "Geophysics of the Hydrosphere", "dept": "INAR", "focus": "Focuses on the study of water in all its forms—oceans, lakes, rivers, snow, and ice—using physical methods, numerical modeling, and remote sensing to understand its role in the climate system.", "pi": "Professor Petteri Uotila (Professor of Hydrosphere Geophysics).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 2, "Resilience & Security": 1}}, {"id": 126, "group": "INAR Education Research and Development Team", "dept": "INAR", "focus": "Conducts versatile and unique research-based education development focusing on atmosphere, climate, and sustainability across the entire lifespan—from early childhood to expert education.", "pi": "Associate Professor Laura Riuttanen.", "themes": {"Atmosphere & Climate": 1}}, {"id": 127, "group": "Environmental and Bioanalytical Research", "dept": "Chemistry", "focus": "Novel instrumental methodologies for compound-bionanoparticle interactions.", "pi": "Prof. Marja-Liisa Riekkola.", "themes": {"Atmosphere & Climate": 2, "Resilience & Security": 1}}, {"id": 128, "group": "Radical Aerosol Physical Chemistry", "dept": "Chemistry", "focus": "Atmospheric radical reactions forming aerosol precursors (ELVOCs).", "pi": "Prof. Matti Rissanen (Professor of Experimental Aerosol Chemistry).", "themes": {"Atmosphere & Climate": 2, "Math & Inversion": 1, "Resilience & Security": 2}}, {"id": 129, "group": "Synthesis and Analysis of Natural Compounds and Their Derivatives", "dept": "Chemistry", "focus": "Synthetic and analytical organic chemistry on natural dyes and atmospheric precursors.", "pi": "Dr. Petri Heinonen (University Lecturer / Group Leader).", "themes": {"Atmosphere & Climate": 2, "Resilience & Security": 2}}]</script>
+<script>
+// Working search over the embedded Kumpula Graph snapshot (129 groups, Dashboard v8)
+(function(){
+  var el = document.getElementById('kumpula-graph'); if(!el) return;
+  var GROUPS; try{ GROUPS = JSON.parse(el.textContent); }catch(e){ return; }
+  var input = document.getElementById('q');
+  var box = document.getElementById('results');
+  var btn = document.querySelector('.searchbox button');
+  if(!input || !box) return;
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  var STOP = ['who','works','on','the','can','my','for','with','what','which','does','in','is','a','an','of','do','i'];
+  function search(qraw){
+    var q = qraw.trim().toLowerCase();
+    if(q.length < 2){ box.className='results'; box.innerHTML=''; return; }
+    var toks = q.split(/\s+/).filter(function(t){return t.length>1 && STOP.indexOf(t)<0;});
+    if(!toks.length){ box.className='results'; return; }
+    var scored = [];
+    GROUPS.forEach(function(g){
+      var hay = (g.group+' '+g.focus+' '+g.dept+' '+g.pi+' '+Object.keys(g.themes).join(' ')).toLowerCase();
+      var score = 0;
+      toks.forEach(function(t){
+        if(g.group.toLowerCase().indexOf(t)>=0) score += 5;
+        else if(hay.indexOf(t)>=0) score += 2;
+      });
+      if(score>0) scored.push([score,g]);
+    });
+    scored.sort(function(a,b){ return b[0]-a[0]; });
+    var top = scored.slice(0,8);
+    if(!top.length){
+      box.innerHTML = '<div class="rmeta">No direct match — the Inno Team will still find the right group. Ask Kumpula.</div>';
+      box.className='results on'; return;
+    }
+    var html = '<div class="rmeta">' + scored.length + ' of ' + GROUPS.length + ' groups match &middot; from the Kumpula Graph (v8 snapshot)</div>';
+    top.forEach(function(p){
+      var g = p[1];
+      var themes = Object.keys(g.themes).sort(function(a,b){return g.themes[b]-g.themes[a];}).slice(0,3).join(' &middot; ');
+      html += '<a class="rrow" href="group.html">'
+           + '<div class="rn">' + esc(g.group) + '</div>'
+           + '<div class="rd">' + esc(g.focus.length>110 ? g.focus.slice(0,110)+'…' : g.focus) + '</div>'
+           + '<div class="rt">' + esc(g.dept) + (themes ? ' &middot; ' + themes : '') + '</div>'
+           + '</a>';
+    });
+    box.innerHTML = html; box.className='results on';
+  }
+  var t;
+  input.addEventListener('input', function(){ clearTimeout(t); t=setTimeout(function(){ search(input.value); }, 160); });
+  if(btn) btn.addEventListener('click', function(){ search(input.value); });
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){ input.value = c.textContent; search(c.textContent); input.focus(); });
+  });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.searchbox') && !e.target.closest('.results') && !e.target.closest('.chip')) { box.className='results'; } });
+})();
+</script>
+
+</body>
+</html>
